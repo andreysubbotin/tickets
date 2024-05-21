@@ -5,4 +5,25 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
 
+    <changeSet id="1716280309681-1" author="subbotin">
+        <createTable tableName="loyalty_program">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_loyalty_program"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="discount_percent" type="DECIMAL(19, 2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716280325789-1" author="subbotin">
+        <createTable tableName="client">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_client"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="loyalty_program_id" type="UUID"/>
+            <column name="gender" type="VARCHAR(255)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="loyalty_program_id" baseTableName="client" constraintName="FK_CLIENT_ON_LOYALTY_PROGRAM" referencedColumnNames="id" referencedTableName="loyalty_program"/>
+    </changeSet>
 </databaseChangeLog>
