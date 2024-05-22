@@ -8,17 +8,13 @@ type Query {
     checkAuthenticated: Void # a system query to check whether a user is authenticated or not. If not, GraphQL error is returned.
     userInfo: UserInfo # a system query to get an authenticated user details
     userPermissions: [String] # a system query to security roles for an authenticated user
-    loyaltyProgramList: [LoyaltyProgramDto]!
-    loyaltyProgram(id: ID!): LoyaltyProgramDto!
-    clientList(page: OffsetPageInput): ClientDtoResultPage!
-    client(id: ID!): ClientDto!
+    loyaltyProgramList: [LoyaltyProgram]!
+    loyaltyProgram(id: ID!): LoyaltyProgram!
 }
 
 type Mutation {
     deleteLoyaltyProgram(id: ID!): Void
-    updateLoyaltyProgram(input: LoyaltyProgramDtoInput!): LoyaltyProgramDto!
-    deleteClient(id: ID!): Void
-    updateClient(input: ClientDtoInput!): ClientDto!
+    updateLoyaltyProgram(input: LoyaltyProgramInput!): LoyaltyProgram!
 }
 
 "Contains information about user"
@@ -28,40 +24,16 @@ type UserInfo {
     avatar: String # user's profile picture as URL or Base64 string
 }
 
-type LoyaltyProgramDto {
+type LoyaltyProgram {
     id: ID
     name: String
     discountPercent: BigDecimal
 }
 
-type ClientDto {
-    id: ID
-    firstName: String
-    lastName: String
-    loyaltyProgram: LoyaltyProgramDto
-    gender: Gender
-}
 
-type ClientDtoResultPage {
-    content: [ClientDto]
-    totalElements: Long!
-}
-
-enum Gender {
-    MALE
-    FEMALE
-}
-
-input LoyaltyProgramDtoInput {
+input LoyaltyProgramInput {
     id: ID
     name: String
     discountPercent: BigDecimal @positive
 }
 
-input ClientDtoInput {
-    id: ID
-    firstName: String
-    lastName: String
-    loyaltyProgram: LoyaltyProgramDtoInput
-    gender: Gender
-}

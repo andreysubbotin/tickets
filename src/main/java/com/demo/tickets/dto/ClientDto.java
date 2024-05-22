@@ -1,22 +1,27 @@
 package com.demo.tickets.dto;
 
+import com.demo.tickets.jpa.Client;
 import com.demo.tickets.jpa.Gender;
+import com.demo.tickets.jpa.LoyaltyProgram;
 
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 /**
- * DTO for {@link com.demo.tickets.jpa.Client}
+ * DTO for {@link Client}
  */
 public class ClientDto implements Serializable {
-    private final UUID id;
-    private final String firstName;
-    private final String lastName;
-    private final LoyaltyProgramDto loyaltyProgram;
-    private final Gender gender;
+    private UUID id;
+    private String firstName;
+    private String lastName;
+    private LoyaltyProgram loyaltyProgram;
+    private Gender gender;
 
-    public ClientDto(UUID id, String firstName, String lastName, LoyaltyProgramDto loyaltyProgram, Gender gender) {
+    public ClientDto() {
+    }
+
+    public ClientDto(UUID id, String firstName, String lastName, LoyaltyProgram loyaltyProgram, Gender gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,20 +33,40 @@ public class ClientDto implements Serializable {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public LoyaltyProgramDto getLoyaltyProgram() {
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LoyaltyProgram getLoyaltyProgram() {
         return loyaltyProgram;
+    }
+
+    public void setLoyaltyProgram(LoyaltyProgram loyaltyProgram) {
+        this.loyaltyProgram = loyaltyProgram;
     }
 
     public Gender getGender() {
         return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     @Override

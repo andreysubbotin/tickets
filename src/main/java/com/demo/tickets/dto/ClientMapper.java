@@ -3,7 +3,7 @@ package com.demo.tickets.dto;
 import com.demo.tickets.jpa.Client;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {LoyaltyProgramMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ClientMapper {
     Client toEntity(ClientDto clientDto);
 
