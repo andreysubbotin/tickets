@@ -1,0 +1,68 @@
+import {Grid, Typography} from "@mui/material";
+import {
+  AutocompleteInput,
+  Button,
+  ReferenceInput,
+  required,
+  SimpleForm,
+  Title,
+  Toolbar
+} from "react-admin";
+import {DateInput} from "../../../core/components/datetime/DateInput";
+
+function SearchFormToolbar() {
+  return (
+    <Toolbar>
+      <Button label="Search" variant="contained" type="submit" form="search-flights"/>
+    </Toolbar>
+  )
+}
+
+export function FlightSearch() {
+  const doSearchFlights = (data: Record<string, any>) => {
+    // todo search
+  };
+
+  return (
+    <div>
+      <Title title="pages.TicketBooking" />
+      <Typography>Ticket Booking</Typography>
+      <SimpleForm id="search-flights"
+                  onSubmit={doSearchFlights}
+                  toolbar={<SearchFormToolbar/>}
+
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={3} md={3}>
+            <ReferenceInput
+              source="from"
+              reference="AirportDto"
+            >
+              <AutocompleteInput
+                optionText={(value => `${value.name} (${value.code})`)}
+                validate={required()}
+              />
+            </ReferenceInput>
+          </Grid>
+          <Grid item xs={3} md={3}>
+            <ReferenceInput
+              source="to"
+              reference="AirportDto"
+            >
+              <AutocompleteInput
+                optionText={(value => `${value.name} (${value.code})`)}
+                validate={required()}
+              />
+            </ReferenceInput>
+          </Grid>
+          <Grid item xs={3} md={3}>
+            <DateInput source="fromDate" validate={required()} />
+          </Grid>
+          <Grid item xs={3} md={3}>
+            <DateInput source="toDate" validate={required()} />
+          </Grid>
+        </Grid>
+      </SimpleForm>
+    </div>
+  );
+}

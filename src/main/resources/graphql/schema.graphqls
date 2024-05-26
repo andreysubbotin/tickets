@@ -10,11 +10,19 @@ type Query {
     userPermissions: [String] # a system query to security roles for an authenticated user
     loyaltyProgramList: [LoyaltyProgram]!
     loyaltyProgram(id: ID!): LoyaltyProgram!
+    clientList(filter: ClientFilterInput, sort: [ClientOrderByInput]): [ClientDto]!
+    client(id: ID!): ClientDto!
+    airportList: [AirportDto]!
+    flightList(from: Int!, to: Int!, dateMin: Date!, dateMax: Date!): [FlightDto]!
+    ticketList(page: OffsetPageInput): TicketDtoResultPage!
+    ticket(id: ID!): TicketDto!
 }
 
 type Mutation {
     deleteLoyaltyProgram(id: ID!): Void
     updateLoyaltyProgram(input: LoyaltyProgramInput!): LoyaltyProgram!
+    deleteClient(id: ID!): Void
+    updateClient(input: ClientDtoInput!): ClientDto!
 }
 
 "Contains information about user"
@@ -30,10 +38,76 @@ type LoyaltyProgram {
     discountPercent: BigDecimal
 }
 
+type ClientDto {
+    id: ID
+    firstName: String
+    lastName: String
+    loyaltyProgram: LoyaltyProgram
+    gender: Gender
+}
+
+type AirportDto {
+    id: Int
+    name: String
+    code: String
+}
+
+type FlightDto {
+    id: Long
+    number: Int
+    airlineName: String
+    fromAirport: AirportDto
+    toAirport: AirportDto
+}
+
+type TicketDto {
+    id: ID
+    price: BigDecimal
+    createdBy: String
+    createdDate: LocalDateTime
+    lastModifiedBy: String
+    lastModifiedDate: LocalDateTime
+    client: ClientDto
+    flight: FlightDto
+}
+
+type TicketDtoResultPage {
+    content: [TicketDto]
+    totalElements: Long!
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+enum ClientOrderByProperty {
+    FIRST_NAME
+    LAST_NAME
+}
+
 
 input LoyaltyProgramInput {
     id: ID
     name: String
     discountPercent: BigDecimal @positive
+}
+
+input ClientFilterInput {
+    firstName: String
+    lastName: String
+}
+
+input ClientDtoInput {
+    id: ID
+    firstName: String
+    lastName: String
+    loyaltyProgram: LoyaltyProgramInput
+    gender: Gender
+}
+
+input ClientOrderByInput {
+    property: ClientOrderByProperty
+    direction: SortDirection
 }
 

@@ -1,0 +1,1226 @@
+{
+  "components": {
+    "ResourceSecured": {
+      "importAliases": [
+        "./src/core/security/components/ResourceSecured"
+      ],
+      "outlineProps": [
+        "name"
+      ]
+    },
+    "Resource": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "name"
+      ]
+    },
+    "Route": {
+      "importAliases": [
+        "react-router"
+      ],
+      "outlineProps": [
+        "path"
+      ]
+    },
+    "RouteSecured": {
+      "importAliases": [
+        "./src/core/security/components/RouteSecured"
+      ],
+      "outlineProps": [
+        "path"
+      ]
+    },
+    "Menu.Item": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "to"
+      ]
+    },
+    "MenuItemSecured": {
+      "importAliases": [
+        "./src/core/security/components/MenuItemSecured"
+      ],
+      "outlineProps": [
+        "to"
+      ]
+    },
+    "Menu.ResourceItem": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "name"
+      ]
+    },
+    "MenuResourceItemSecured": {
+      "importAliases": [
+        "./src/core/security/components/MenuResourceItemSecured"
+      ],
+      "outlineProps": [
+        "name"
+      ]
+    },
+    "Title": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "title",
+        "defaultTitle",
+        "preferenceKey"
+      ],
+      "messageProps": [
+        "title",
+        "defaultTitle",
+        "preferenceKey"
+      ]
+    },
+    "EditButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "ShowButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "CreateButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "ListButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "ExportButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "BulkExportButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "BulkDeleteButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "BulkUpdateButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "BulkUpdateFormButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "FilterButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "UpdateButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "DeleteButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "DeleteWithConfirmButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "CloneButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "RefreshButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "SkipNavigationButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "MenuItemLink": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ],
+      "outlineProps": [
+        "to",
+        "label"
+      ]
+    },
+    "UserMenu": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "RecordRepresentation": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ]
+    },
+
+    "List": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ],
+      "messageProps": [
+        "title"
+      ]
+    },
+    "ListBase": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ]
+    },
+    "FilterList": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "label",
+        "icon"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "SortButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "Count": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ]
+    },
+
+    "Create": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ],
+      "messageProps": [
+        "title"
+      ]
+    },
+    "CreateBase": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ]
+    },
+    "Edit": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ],
+      "messageProps": [
+        "title"
+      ]
+    },
+    "EditBase": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ]
+    },
+    "TabbedForm.Tab": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "path",
+        "label"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "SaveButton": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+
+    "Show": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ],
+      "messageProps": [
+        "title"
+      ]
+    },
+    "ShowBase": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "resource"
+      ]
+    },
+    "TabbedShowLayout.Tab": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "Labeled": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+
+    "WithRecord": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+
+    "ArrayField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "BooleanField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "ChipField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "DateField": {
+      "importAliases": [
+        "react-admin",
+        "./src/core/components/datetime/DateField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "EmailField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "FileField": {
+      "importAliases": [
+        "react-admin",
+        "./src/core/components/file/FileField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "FunctionField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "ImageField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "NumberField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "ReferenceField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "ReferenceArrayField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "ReferenceManyField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "ReferenceManyCount": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "ReferenceOneField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "RichTextField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "SelectField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "TextField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "UrlField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "WrapperField": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label"
+      ]
+    },
+    "LocalDateTimeField": {
+      "importAliases": [
+        "./src/core/components/datetime/LocalDateTimeField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "LocalTimeField": {
+      "importAliases": [
+        "./src/core/components/datetime/LocalTimeField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "OffsetDateTimeField": {
+      "importAliases": [
+        "./src/core/components/datetime/OffsetDateTimeField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "OffsetTimeField": {
+      "importAliases": [
+        "./src/core/components/datetime/OffsetTimeField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "TimestampField": {
+      "importAliases": [
+        "./src/core/components/datetime/TimestampField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "EnumField": {
+      "importAliases": [
+        "./src/core/components/enum/EnumField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "MultiReferenceField": {
+      "importAliases": [
+        "./src/core/components/reference/MultiReferenceField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "SingleReferenceField": {
+      "importAliases": [
+        "./src/core/components/reference/SingleReferenceField"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+    "FieldHighlighter": {
+      "importAliases": [
+        "./src/core/components/FieldHighlighter"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "emptyText"
+      ]
+    },
+
+    "ArrayInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "AutocompleteInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText",
+        "createLabel",
+        "createItemLabel",
+        "emptyText"
+      ]
+    },
+    "AutocompleteArrayInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText",
+        "createLabel",
+        "createItemLabel"
+      ]
+    },
+    "BooleanInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "CheckboxGroupInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "DateInput": {
+      "importAliases": [
+        "react-admin",
+        "./src/core/components/datetime/DateInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "DateTimeInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "FileInput": {
+      "importAliases": [
+        "react-admin",
+        "./src/core/components/file/FileInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText",
+        "placeholder"
+      ]
+    },
+    "ImageInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText",
+        "placeholder"
+      ]
+    },
+    "NullableBooleanInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "NumberInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "PasswordInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "RadioButtonGroupInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "ReferenceInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "ReferenceArrayInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "RichTextInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "SearchInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText",
+        "placeholder"
+      ]
+    },
+    "SelectInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText",
+        "emptyText"
+      ]
+    },
+    "SelectArrayInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "TextInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "TimeInput": {
+      "importAliases": [
+        "react-admin"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "LocalDateTimeInput": {
+      "importAliases": [
+        "./src/core/components/datetime/LocalDateTimeInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "LocalTimeInput": {
+      "importAliases": [
+        "./src/core/components/datetime/LocalTimeInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "OffsetDateTimeInput": {
+      "importAliases": [
+        "./src/core/components/datetime/OffsetDateTimeInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "OffsetTimeInput": {
+      "importAliases": [
+        "./src/core/components/datetime/OffsetTimeInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "TimestampInput": {
+      "importAliases": [
+        "./src/core/components/datetime/TimestampInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "EnumInput": {
+      "importAliases": [
+        "./src/core/components/datetime/EnumInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "BigDecimalNumberInput": {
+      "importAliases": [
+        "./src/core/components/number/BigDecimalNumberInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "BigIntNumberInput": {
+      "importAliases": [
+        "./src/core/components/number/BigIntNumberInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "FloatNumberInput": {
+      "importAliases": [
+        "./src/core/components/number/FloatNumberInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "IntNumberInput": {
+      "importAliases": [
+        "./src/core/components/number/IntNumberInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "LongNumberInput": {
+      "importAliases": [
+        "./src/core/components/number/LongNumberInput"
+      ],
+      "outlineProps": [
+        "source"
+      ],
+      "messageProps": [
+        "label",
+        "helperText"
+      ]
+    },
+    "MultiReferenceInput": {
+      "importAliases": [
+        "./src/core/components/reference/MultiReferenceInput"
+      ],
+      "outlineProps": [
+        "source"
+      ]
+    },
+    "SingleReferenceInput": {
+      "importAliases": [
+        "./src/core/components/reference/SingleReferenceInput"
+      ],
+      "outlineProps": [
+        "source"
+      ]
+    },
+
+    "Button": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/Button"
+      ],
+      "outlineProps": [
+        "variant",
+        "children"
+      ]
+    },
+    "Typography": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/Typography"
+      ],
+      "outlineProps": [
+        "variant"
+      ]
+    },
+    "TableCell": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/TableCell"
+      ],
+      "outlineProps": [
+        "children"
+      ]
+    },
+    "AccordionSummary": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/AccordionSummary"
+      ],
+      "outlineProps": [
+        "id",
+        "aria-controls"
+      ]
+    },
+    "Link": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/Link"
+      ],
+      "outlineProps": [
+        "href",
+        "children"
+      ]
+    },
+    "MenuItem": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/MenuItem"
+      ],
+      "outlineProps": [
+        "children"
+      ]
+    },
+    "Tab": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/Tab"
+      ],
+      "outlineProps": [
+        "value",
+        "label"
+      ]
+    },
+    "TabPanel": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/TabPanel"
+      ],
+      "outlineProps": [
+        "value",
+        "children"
+      ]
+    },
+    "Grid": {
+      "importAliases": [
+        "@mui/material",
+        "@mui/material/Grid"
+      ],
+      "outlineProps": [
+        "container",
+        "item"
+      ]
+    }
+  }
+}
