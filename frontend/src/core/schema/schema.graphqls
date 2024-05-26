@@ -60,7 +60,7 @@ type Query {
   client(id: ID!): ClientDto!
   airportList: [AirportDto]!
   flightList(from: Int!, to: Int!, dateMin: Date!, dateMax: Date!): [FlightDto]!
-  ticketList(page: OffsetPageInput): TicketDtoResultPage!
+  ticketList(page: OffsetPageInput, sort: [TicketOrderByInput], filter: TicketFilterInput): TicketDtoResultPage!
   ticket(id: ID!): TicketDto!
 }
 
@@ -69,12 +69,18 @@ type Mutation {
   updateLoyaltyProgram(input: LoyaltyProgramInput!): LoyaltyProgram!
   deleteClient(id: ID!): Void
   updateClient(input: ClientDtoInput!): ClientDto!
+  deleteTicket(id: ID!): Void
+  bookTicket(flightId: ID!, clientId: ID!): BookResult
 }
 
 type AirportDto {
   id: Int
   name: String
   code: String
+}
+
+type BookResult {
+  ticket: TicketDto
 }
 
 type ClientDto {
@@ -156,6 +162,15 @@ input OffsetPageInput {
   size: Int!
 }
 
+input TicketFilterInput {
+  clientId: String
+}
+
+input TicketOrderByInput {
+  property: TicketOrderByProperty
+  direction: SortDirection
+}
+
 enum ClientOrderByProperty {
   FIRST_NAME
   LAST_NAME
@@ -169,6 +184,11 @@ enum Gender {
 enum SortDirection {
   ASC
   DESC
+}
+
+enum TicketOrderByProperty {
+  CREATED_DATE
+  PRICE
 }
 
 scalar BigDecimal

@@ -14,8 +14,8 @@ import { ClientCreate } from "./screens/client/ClientCreate";
 import { ClientEdit } from "./screens/client/ClientEdit";
 import { ClientList } from "./screens/client/ClientList";
 import { FlightSearch } from "./screens/flight/FlightSearch";
-import { TicketList } from "./screens/ticket/ticket/TicketList";
-import { TicketShow } from "./screens/ticket/ticket/TicketShow";
+import { TicketList } from "./screens/ticket/TicketList";
+import { TicketShow } from "./screens/ticket/TicketShow";
 import { activeAppTheme } from "./themes/appThemeConfig";
 import { getStoredThemeMode } from "./themes/getStoredThemeMode";
 
@@ -55,17 +55,17 @@ export const App = () => {
             />
           </CustomRoutes>
           <ResourceSecured
-            name="TicketDto"
-            list={TicketList}
-            recordRepresentation={getTicketDtoRecordRepresentation}
-            show={TicketShow}
-          />
-          <ResourceSecured
             name="ClientDto"
             list={ClientList}
             recordRepresentation={getClientDtoRecordRepresentation}
             create={ClientCreate}
             edit={ClientEdit}
+          />
+          <ResourceSecured
+            name="TicketDto"
+            list={TicketList}
+            recordRepresentation={getTicketDtoRecordRepresentation}
+            show={TicketShow}
           />
         </AdminUI>
       </DevSupport>

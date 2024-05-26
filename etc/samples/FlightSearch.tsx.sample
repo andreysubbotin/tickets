@@ -1,14 +1,8 @@
 import {Grid, Typography} from "@mui/material";
-import {
-  AutocompleteInput,
-  Button,
-  ReferenceInput,
-  required,
-  SimpleForm,
-  Title,
-  Toolbar
-} from "react-admin";
+import {AutocompleteInput, Button, ReferenceInput, required, SimpleForm, Title, Toolbar, useNotify} from "react-admin";
 import {DateInput} from "../../../core/components/datetime/DateInput";
+import {useState} from "react";
+import {getClientDtoRecordRepresentation} from "../../../core/record-representation/getClientDtoRecordRepresentation";
 
 function SearchFormToolbar() {
   return (
@@ -18,20 +12,65 @@ function SearchFormToolbar() {
   )
 }
 
+
+interface BuyTicketButtonParams {
+  flightId: any;
+  clientId: () => any;
+}
+
+function BuyTicketButton({flightId, clientId}: BuyTicketButtonParams) {
+  if (flightId === null) {
+    return null
+  }
+  const notify = useNotify();
+  return (
+    <Button onClick={e => {
+      const clId = clientId()
+      if (clId == null) {
+        notify("Client is required for booking", {type: 'warning'})
+      }
+    }}>Buy ticket</Button>
+  )
+}
+
+interface ClientFormParams {
+  client: (value: any) => void;
+}
+
+function ClientForm({client}: ClientFormParams) {
+  return (<SimpleForm id="client-form" toolbar={false}>
+      <Grid item xs={3} md={3}>
+        <ReferenceInput
+          source="client"
+          reference="ClientDto">
+          <AutocompleteInput
+            optionText={(value => getClientDtoRecordRepresentation(value))}
+            validate={required()}
+            onChange={value => client(value)}
+          />
+        </ReferenceInput>
+      </Grid>
+    </SimpleForm>
+  )
+}
+
 export function FlightSearch() {
+  const [clientId, setClientId] = useState()
+
   const doSearchFlights = (data: Record<string, any>) => {
-    // todo search
   };
 
   return (
     <div>
-      <Title title="pages.TicketBooking" />
+      <Title title="pages.TicketBooking"/>
       <Typography>Ticket Booking</Typography>
+
+      <ClientForm client={value => setClientId(value)}/>
+
       <SimpleForm id="search-flights"
                   onSubmit={doSearchFlights}
-                  toolbar={<SearchFormToolbar/>}
+                  toolbar={<SearchFormToolbar/>}>
 
-      >
         <Grid container spacing={2}>
           <Grid item xs={3} md={3}>
             <ReferenceInput
@@ -56,13 +95,14 @@ export function FlightSearch() {
             </ReferenceInput>
           </Grid>
           <Grid item xs={3} md={3}>
-            <DateInput source="fromDate" validate={required()} />
+            <DateInput source="fromDate" validate={required()}/>
           </Grid>
           <Grid item xs={3} md={3}>
-            <DateInput source="toDate" validate={required()} />
+            <DateInput source="toDate" validate={required()}/>
           </Grid>
         </Grid>
       </SimpleForm>
     </div>
   );
 }
+

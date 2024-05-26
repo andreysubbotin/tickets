@@ -14,7 +14,7 @@ type Query {
     client(id: ID!): ClientDto!
     airportList: [AirportDto]!
     flightList(from: Int!, to: Int!, dateMin: Date!, dateMax: Date!): [FlightDto]!
-    ticketList(page: OffsetPageInput): TicketDtoResultPage!
+    ticketList(page: OffsetPageInput, sort: [TicketOrderByInput], filter: TicketFilterInput): TicketDtoResultPage!
     ticket(id: ID!): TicketDto!
 }
 
@@ -23,6 +23,12 @@ type Mutation {
     updateLoyaltyProgram(input: LoyaltyProgramInput!): LoyaltyProgram!
     deleteClient(id: ID!): Void
     updateClient(input: ClientDtoInput!): ClientDto!
+    deleteTicket(id: ID!): Void
+    bookTicket(flightId : ID!, clientId : ID!) : BookResult
+}
+
+type BookResult {
+    ticket : TicketDto
 }
 
 "Contains information about user"
@@ -86,6 +92,11 @@ enum ClientOrderByProperty {
     LAST_NAME
 }
 
+enum TicketOrderByProperty {
+    CREATED_DATE
+    PRICE
+}
+
 
 input LoyaltyProgramInput {
     id: ID
@@ -108,6 +119,15 @@ input ClientDtoInput {
 
 input ClientOrderByInput {
     property: ClientOrderByProperty
+    direction: SortDirection
+}
+
+input TicketFilterInput {
+    clientId: String
+}
+
+input TicketOrderByInput {
+    property: TicketOrderByProperty
     direction: SortDirection
 }
 

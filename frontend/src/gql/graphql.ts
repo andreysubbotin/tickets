@@ -38,6 +38,11 @@ export type AirportDto = {
   name?: Maybe<Scalars["String"]>;
 };
 
+export type BookResult = {
+  __typename?: "BookResult";
+  ticket?: Maybe<TicketDto>;
+};
+
 export type ClientDto = {
   __typename?: "ClientDto";
   firstName?: Maybe<Scalars["String"]>;
@@ -105,10 +110,17 @@ export type LoyaltyProgramInput = {
 
 export type Mutation = {
   __typename?: "Mutation";
+  bookTicket?: Maybe<BookResult>;
   deleteClient?: Maybe<Scalars["Void"]>;
   deleteLoyaltyProgram?: Maybe<Scalars["Void"]>;
+  deleteTicket?: Maybe<Scalars["Void"]>;
   updateClient: ClientDto;
   updateLoyaltyProgram: LoyaltyProgram;
+};
+
+export type MutationBookTicketArgs = {
+  clientId: Scalars["ID"];
+  flightId: Scalars["ID"];
 };
 
 export type MutationDeleteClientArgs = {
@@ -116,6 +128,10 @@ export type MutationDeleteClientArgs = {
 };
 
 export type MutationDeleteLoyaltyProgramArgs = {
+  id: Scalars["ID"];
+};
+
+export type MutationDeleteTicketArgs = {
   id: Scalars["ID"];
 };
 
@@ -172,7 +188,9 @@ export type QueryTicketArgs = {
 };
 
 export type QueryTicketListArgs = {
+  filter?: InputMaybe<TicketFilterInput>;
   page?: InputMaybe<OffsetPageInput>;
+  sort?: InputMaybe<Array<InputMaybe<TicketOrderByInput>>>;
 };
 
 export enum SortDirection {
@@ -197,6 +215,20 @@ export type TicketDtoResultPage = {
   content?: Maybe<Array<Maybe<TicketDto>>>;
   totalElements: Scalars["Long"];
 };
+
+export type TicketFilterInput = {
+  clientId?: InputMaybe<Scalars["String"]>;
+};
+
+export type TicketOrderByInput = {
+  direction?: InputMaybe<SortDirection>;
+  property?: InputMaybe<TicketOrderByProperty>;
+};
+
+export enum TicketOrderByProperty {
+  CreatedDate = "CREATED_DATE",
+  Price = "PRICE",
+}
 
 export type UserInfo = {
   __typename?: "UserInfo";
@@ -309,8 +341,33 @@ export type FlightList_FlightSearchQuery = {
   } | null>;
 };
 
+export type BookTicket_BuyTicketButtonMutationVariables = Exact<{
+  flightId: Scalars["ID"];
+  clientId: Scalars["ID"];
+}>;
+
+export type BookTicket_BuyTicketButtonMutation = {
+  __typename?: "Mutation";
+  bookTicket?: {
+    __typename?: "BookResult";
+    ticket?: {
+      __typename?: "TicketDto";
+      id?: string | null;
+      price?: any | null;
+      createdBy?: string | null;
+      createdDate?: any | null;
+      lastModifiedBy?: string | null;
+      lastModifiedDate?: any | null;
+    } | null;
+  } | null;
+};
+
 export type TicketList_TicketListQueryVariables = Exact<{
   page?: InputMaybe<OffsetPageInput>;
+  sort?: InputMaybe<
+    Array<InputMaybe<TicketOrderByInput>> | InputMaybe<TicketOrderByInput>
+  >;
+  filter?: InputMaybe<TicketFilterInput>;
 }>;
 
 export type TicketList_TicketListQuery = {
@@ -338,9 +395,30 @@ export type TicketList_TicketListQuery = {
         id?: any | null;
         number?: number | null;
         airlineName?: string | null;
+        fromAirport?: {
+          __typename?: "AirportDto";
+          id?: number | null;
+          name?: string | null;
+          code?: string | null;
+        } | null;
+        toAirport?: {
+          __typename?: "AirportDto";
+          id?: number | null;
+          name?: string | null;
+          code?: string | null;
+        } | null;
       } | null;
     } | null> | null;
   };
+};
+
+export type DeleteTicket_TicketListMutationVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type DeleteTicket_TicketListMutation = {
+  __typename?: "Mutation";
+  deleteTicket?: any | null;
 };
 
 export type TicketQueryVariables = Exact<{
@@ -789,6 +867,102 @@ export const FlightList_FlightSearchDocument = {
   FlightList_FlightSearchQuery,
   FlightList_FlightSearchQueryVariables
 >;
+export const BookTicket_BuyTicketButtonDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "BookTicket_BuyTicketButton" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "flightId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "clientId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "bookTicket" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "flightId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "flightId" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "clientId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "clientId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "ticket" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "price" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "createdBy" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "createdDate" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "lastModifiedBy" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "lastModifiedDate" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  BookTicket_BuyTicketButtonMutation,
+  BookTicket_BuyTicketButtonMutationVariables
+>;
 export const TicketList_TicketListDocument = {
   kind: "Document",
   definitions: [
@@ -805,6 +979,28 @@ export const TicketList_TicketListDocument = {
             name: { kind: "Name", value: "OffsetPageInput" },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "sort" } },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "TicketOrderByInput" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "filter" },
+          },
+          type: {
+            kind: "NamedType",
+            name: { kind: "Name", value: "TicketFilterInput" },
+          },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -819,6 +1015,22 @@ export const TicketList_TicketListDocument = {
                 value: {
                   kind: "Variable",
                   name: { kind: "Name", value: "page" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "sort" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "sort" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "filter" },
                 },
               },
             ],
@@ -892,6 +1104,48 @@ export const TicketList_TicketListDocument = {
                               kind: "Field",
                               name: { kind: "Name", value: "airlineName" },
                             },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "fromAirport" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "id" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "name" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "code" },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "toAirport" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "id" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "name" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "code" },
+                                  },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },
@@ -912,6 +1166,48 @@ export const TicketList_TicketListDocument = {
 } as unknown as DocumentNode<
   TicketList_TicketListQuery,
   TicketList_TicketListQueryVariables
+>;
+export const DeleteTicket_TicketListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteTicket_TicketList" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteTicket" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeleteTicket_TicketListMutation,
+  DeleteTicket_TicketListMutationVariables
 >;
 export const TicketDocument = {
   kind: "Document",

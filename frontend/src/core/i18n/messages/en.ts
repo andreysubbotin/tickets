@@ -6,21 +6,6 @@ const messages: TranslationMessages = {
   ...englishMessages,
 
   resources: {
-    ClientDto: {
-      name: "Client |||| Clients",
-
-      fields: {
-        firstName: "First Name",
-        lastName: "Last Name",
-
-        loyaltyProgram: {
-          id: "Loyalty Program"
-        },
-
-        gender: "Gender"
-      }
-    },
-
     TicketDto: {
       name: "Ticket |||| Tickets",
 
@@ -38,6 +23,21 @@ const messages: TranslationMessages = {
         flight: {
           id: "Flight"
         }
+      }
+    },
+
+    ClientDto: {
+      name: "Client |||| Clients",
+
+      fields: {
+        firstName: "First Name",
+        lastName: "Last Name",
+
+        loyaltyProgram: {
+          id: "Loyalty Program"
+        },
+
+        gender: "Gender"
       }
     }
   },

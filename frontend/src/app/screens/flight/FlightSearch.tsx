@@ -9,11 +9,12 @@ import {
   Title,
   Toolbar,
   useList,
-  UseListValue, useNotify
+  UseListValue,
+  useNotify
 } from "react-admin";
 import {DateInput} from "../../../core/components/datetime/DateInput";
 import {gql} from "@amplicode/gql";
-import {useLazyQuery} from "@apollo/client";
+import {useLazyQuery, useMutation} from "@apollo/client";
 import {useMemo, useState} from "react";
 import {FlightDto} from "@amplicode/gql/graphql";
 import {getClientDtoRecordRepresentation} from "../../../core/record-representation/getClientDtoRecordRepresentation";
@@ -48,6 +49,27 @@ query FlightList_FlightSearch(
 }
 `);
 
+const BOOK_TICKET_BUY_TICKET_BUTTON = gql(`
+mutation BookTicket_BuyTicketButton(
+    $flightId: ID!,
+    $clientId: ID!
+) {
+    bookTicket(
+        flightId: $flightId,
+        clientId: $clientId
+) {
+        ticket {
+            id
+            price
+            createdBy
+            createdDate
+            lastModifiedBy
+            lastModifiedDate
+        }
+    }
+}
+`);
+
 function SearchFormToolbar() {
   return (
     <Toolbar>
@@ -67,13 +89,25 @@ function BuyTicketButton({flightId, clientId}: BuyTicketButtonParams) {
     return null
   }
   const notify = useNotify();
+  const [runBookTicket, {
+    loading: bookTicketLoading,
+    error: bookTicketError
+  }] = useMutation(BOOK_TICKET_BUY_TICKET_BUTTON);
   return (
-    <Button onClick={e => {
+    <Button onClick={async e => {
       const clId = clientId()
       if (clId == null) {
-          notify("Client is required for booking", { type: 'warning' })
+        notify("Client is required for booking", {type: 'warning'})
+      } else {
+        await runBookTicket({
+          variables: {
+            flightId: flightId,
+            clientId: clId
+          }
+        })
+        notify(`Ticket booked successfully`, {type: "success"});
       }
-    }}>Buy ticket</Button>
+    }} label={'Buy ticket'}/>
   )
 }
 

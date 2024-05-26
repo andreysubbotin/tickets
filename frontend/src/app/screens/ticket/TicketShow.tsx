@@ -1,10 +1,10 @@
 import { gql } from "@amplicode/gql";
 import { ResultOf } from "@graphql-typed-document-node/core";
 import { NumberField, Show, ShowProps, SimpleShowLayout, TextField } from "react-admin";
-import { LocalDateTimeField } from "../../../../core/components/datetime/LocalDateTimeField";
-import { SingleReferenceField } from "../../../../core/components/reference/SingleReferenceField";
-import { getClientDtoRecordRepresentation } from "../../../../core/record-representation/getClientDtoRecordRepresentation";
-import { getFlightDtoRecordRepresentation } from "../../../../core/record-representation/getFlightDtoRecordRepresentation";
+import { LocalDateTimeField } from "../../../core/components/datetime/LocalDateTimeField";
+import { SingleReferenceField } from "../../../core/components/reference/SingleReferenceField";
+import { getClientDtoRecordRepresentation } from "../../../core/record-representation/getClientDtoRecordRepresentation";
+import { getFlightDtoRecordRepresentation } from "../../../core/record-representation/getFlightDtoRecordRepresentation";
 
 const TICKET = gql(`query Ticket($id: ID!) {
   ticket(id: $id) {

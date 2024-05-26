@@ -13,8 +13,8 @@ export const MainMenu = () => {
         primaryText="pages.FlightSearch"
         leftIcon={<WebAsset />}
       />
-      <MenuResourceItemSecured name="TicketDto" />
       <MenuResourceItemSecured name="ClientDto" />
+      <MenuResourceItemSecured name="TicketDto" />
     </Menu>
   );
 };

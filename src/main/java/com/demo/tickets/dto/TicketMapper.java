@@ -1,11 +1,10 @@
 package com.demo.tickets.dto;
 
-import com.demo.tickets.dto.TicketDto;
 import com.demo.tickets.mongo.Ticket;
-import com.demo.tickets.service.TicketService;
+import com.demo.tickets.service.TicketMappingService;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = TicketService.class)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = TicketMappingService.class)
 public interface TicketMapper {
     Ticket toEntity(TicketDto ticketDto);
 
