@@ -1,7 +1,21 @@
-import { createAmplicodeApolloClient } from "@amplicode/react";
-import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
-import { i18nProvider } from "../../i18nProvider";
+import { ApolloClient, from, InMemoryCache } from "@apollo/client";
+import { authLink } from "./links/authLink";
+import { httpLink } from "./links/httpLink";
+import { localeLink } from "./links/localeLink";
 
-export const apolloClient: ApolloClient<NormalizedCacheObject> = createAmplicodeApolloClient({
-  i18nProvider,
-});
+export const apolloClient = createApolloClient();
+
+function createApolloClient() {
+  return new ApolloClient({
+    link: from([authLink, localeLink, httpLink]),
+    cache: new InMemoryCache(),
+    defaultOptions: {
+      query: {
+        fetchPolicy: "network-only",
+      },
+      watchQuery: {
+        fetchPolicy: "network-only",
+      },
+    },
+  });
+}

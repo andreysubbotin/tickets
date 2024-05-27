@@ -18,6 +18,7 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.lang.NonNull;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +44,7 @@ public class TicketController {
 
     @MutationMapping(name = "deleteTicket")
     @Transactional
+    @Secured("ROLE_VIEWER")
     public void delete(@GraphQLId @Argument @NonNull String id) {
         Ticket entity = crudRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(String.format("Unable to find entity by id: %s ", id)));
@@ -50,6 +52,7 @@ public class TicketController {
         crudRepository.delete(entity);
     }
 
+    @Secured("ROLE_VIEWER")
     @NonNull
     @QueryMapping(name = "ticketList")
     public ResultPage<TicketDto> findAll(
@@ -71,6 +74,7 @@ public class TicketController {
 
     @QueryMapping(name = "ticket")
     @Transactional(readOnly = true)
+    @Secured("ROLE_VIEWER")
     @NonNull
     public TicketDto findById(@GraphQLId @Argument @NonNull String id) {
         return crudRepository.findById(id)
@@ -147,6 +151,7 @@ public class TicketController {
         }
     }
 
+    @Secured("ROLE_BOOKER")
     @MutationMapping(name = "bookTicket")
     public BookResult bookTicket(@Argument @NotNull @GraphQLId Long flightId, @Argument @NotNull @GraphQLId UUID clientId) {
         return ticketService.bookTicket(flightId, clientId);

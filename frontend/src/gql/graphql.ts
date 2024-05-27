@@ -463,13 +463,6 @@ export type UserInfoQuery = {
   } | null;
 };
 
-export type CheckAuthenticatedQueryVariables = Exact<{ [key: string]: never }>;
-
-export type CheckAuthenticatedQuery = {
-  __typename?: "Query";
-  checkAuthenticated?: any | null;
-};
-
 export type UserPermissionsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type UserPermissionsQuery = {
@@ -1332,28 +1325,6 @@ export const UserInfoDocument = {
     },
   ],
 } as unknown as DocumentNode<UserInfoQuery, UserInfoQueryVariables>;
-export const CheckAuthenticatedDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "checkAuthenticated" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "checkAuthenticated" },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CheckAuthenticatedQuery,
-  CheckAuthenticatedQueryVariables
->;
 export const UserPermissionsDocument = {
   kind: "Document",
   definitions: [

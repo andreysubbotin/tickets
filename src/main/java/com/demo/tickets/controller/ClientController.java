@@ -12,6 +12,7 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.lang.NonNull;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +34,7 @@ public class ClientController {
 
     @MutationMapping(name = "deleteClient")
     @Transactional
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     public void delete(@GraphQLId @Argument @NonNull UUID id) {
         Client entity = crudRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(String.format("Unable to find entity by id: %s ", id)));
@@ -42,6 +44,7 @@ public class ClientController {
 
     @QueryMapping(name = "clientList")
     @Transactional(readOnly = true)
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     @NonNull
     public List<ClientDto> findAll(
             @Argument ClientFilter filter,
@@ -54,6 +57,7 @@ public class ClientController {
 
     @QueryMapping(name = "client")
     @Transactional(readOnly = true)
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     @NonNull
     public ClientDto findById(@GraphQLId @Argument @NonNull UUID id) {
         return crudRepository.findById(id)
@@ -63,6 +67,7 @@ public class ClientController {
 
     @MutationMapping(name = "updateClient")
     @Transactional
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     @NonNull
     public ClientDto update(@Argument @NonNull ClientDto input) {
         if (input.getId() != null) {

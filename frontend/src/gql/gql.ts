@@ -33,8 +33,6 @@ const documents = {
     types.TicketDocument,
   "\n  query userInfo {\n   userInfo {\n     id\n     fullName\n     avatar\n   }\n  }\n":
     types.UserInfoDocument,
-  "\n query checkAuthenticated {\n   checkAuthenticated\n }\n":
-    types.CheckAuthenticatedDocument,
   "\n  query userPermissions {\n   userPermissions\n  }\n":
     types.UserPermissionsDocument,
 };
@@ -113,12 +111,6 @@ export function gql(
 export function gql(
   source: "\n  query userInfo {\n   userInfo {\n     id\n     fullName\n     avatar\n   }\n  }\n",
 ): (typeof documents)["\n  query userInfo {\n   userInfo {\n     id\n     fullName\n     avatar\n   }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "\n query checkAuthenticated {\n   checkAuthenticated\n }\n",
-): (typeof documents)["\n query checkAuthenticated {\n   checkAuthenticated\n }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
