@@ -39,7 +39,7 @@ public class TicketService {
     public BookResult bookTicket(Long flightId, UUID clientId) {
         FlFlightDto flight = flightControllerApi.findById(flightId);
         if (flight == null) {
-            throw new IllegalStateException(String.format("Client %s not found", flightId));
+            throw new IllegalStateException(String.format("Flight %s not found", flightId));
         }
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new IllegalStateException(String.format("Client %s not found", clientId)));
@@ -60,6 +60,9 @@ public class TicketService {
         int price = ThreadLocalRandom.current().nextInt(100, 200);
         ticket.setPrice(new BigDecimal(price));
 
+        //TODO: files
+        //ReceiptService#createAndSaveReceipt
+
         ticket = ticketRepository.save(ticket);
         return ticket;
     }
@@ -68,7 +71,7 @@ public class TicketService {
 
     private void notifyClient(Client client, FlFlightDto flight, Ticket ticket) {
         TicketConfirmationMessage message = new TicketConfirmationMessage();
-        message.setEmail("test@h.com");
+        message.setEmail(client.getEmail());
         if (flight.getNumber() != null) {
             message.setFlightNumber(flight.getNumber().toString());
         }
