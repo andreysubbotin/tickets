@@ -26,4 +26,9 @@
         </createTable>
         <addForeignKeyConstraint baseColumnNames="loyalty_program_id" baseTableName="client" constraintName="FK_CLIENT_ON_LOYALTY_PROGRAM" referencedColumnNames="id" referencedTableName="loyalty_program"/>
     </changeSet>
+    <changeSet id="1716890890671-1" author="subbotin">
+        <addColumn tableName="client">
+            <column name="email"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

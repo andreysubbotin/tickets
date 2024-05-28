@@ -1,6 +1,7 @@
 package com.demo.tickets.jpa;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 import java.util.UUID;
 
@@ -25,6 +26,18 @@ public class Client {
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
+
+    @Email
+    @Column(name = "email")
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Gender getGender() {
         return gender;

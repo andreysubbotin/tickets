@@ -45,6 +45,7 @@ export type BookResult = {
 
 export type ClientDto = {
   __typename?: "ClientDto";
+  email?: Maybe<Scalars["String"]>;
   firstName?: Maybe<Scalars["String"]>;
   gender?: Maybe<Gender>;
   id?: Maybe<Scalars["ID"]>;
@@ -53,6 +54,7 @@ export type ClientDto = {
 };
 
 export type ClientDtoInput = {
+  email?: InputMaybe<Scalars["String"]>;
   firstName?: InputMaybe<Scalars["String"]>;
   gender?: InputMaybe<Gender>;
   id?: InputMaybe<Scalars["ID"]>;

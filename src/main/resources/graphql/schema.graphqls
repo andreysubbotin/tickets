@@ -24,11 +24,11 @@ type Mutation {
     deleteClient(id: ID!): Void
     updateClient(input: ClientDtoInput!): ClientDto!
     deleteTicket(id: ID!): Void
-    bookTicket(flightId : ID!, clientId : ID!) : BookResult
+    bookTicket(flightId: ID!, clientId: ID!): BookResult
 }
 
 type BookResult {
-    ticket : TicketDto
+    ticket: TicketDto
 }
 
 "Contains information about user"
@@ -50,6 +50,7 @@ type ClientDto {
     lastName: String
     loyaltyProgram: LoyaltyProgram
     gender: Gender
+    email: String
 }
 
 type AirportDto {
@@ -115,6 +116,7 @@ input ClientDtoInput {
     lastName: String
     loyaltyProgram: LoyaltyProgramInput
     gender: Gender
+    email: String @email(regexp: ".*")
 }
 
 input ClientOrderByInput {

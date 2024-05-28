@@ -3,6 +3,7 @@ package com.demo.tickets.dto;
 import com.demo.tickets.jpa.Client;
 import com.demo.tickets.jpa.Gender;
 import com.demo.tickets.jpa.LoyaltyProgram;
+import jakarta.validation.constraints.Email;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,16 +18,20 @@ public class ClientDto implements Serializable {
     private String lastName;
     private LoyaltyProgram loyaltyProgram;
     private Gender gender;
+    @Email
+    private String email;
 
     public ClientDto() {
     }
 
-    public ClientDto(UUID id, String firstName, String lastName, LoyaltyProgram loyaltyProgram, Gender gender) {
+    public ClientDto(UUID id, String firstName, String lastName, LoyaltyProgram loyaltyProgram, Gender gender,
+                     String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.loyaltyProgram = loyaltyProgram;
         this.gender = gender;
+        this.email = email;
     }
 
     public UUID getId() {
@@ -94,5 +99,13 @@ public class ClientDto implements Serializable {
                 "lastName = " + lastName + ", " +
                 "loyaltyProgram = " + loyaltyProgram + ", " +
                 "gender = " + gender + ")";
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

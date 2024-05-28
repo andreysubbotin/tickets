@@ -89,6 +89,7 @@ type ClientDto {
   lastName: String
   loyaltyProgram: LoyaltyProgram
   gender: Gender
+  email: String
 }
 
 type FileUploadResponse {
@@ -139,6 +140,7 @@ input ClientDtoInput {
   lastName: String
   loyaltyProgram: LoyaltyProgramInput
   gender: Gender
+  email: String
 }
 
 input ClientFilterInput {
