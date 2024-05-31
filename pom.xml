@@ -206,7 +206,7 @@
                             <apiPackage>com.demo.tickets.external.flight.api</apiPackage>
                             <generateApiTests>false</generateApiTests>
                             <generateModelTests>false</generateModelTests>
-                            <modelNamePrefix>Ft</modelNamePrefix>
+                            <modelNamePrefix>Fl</modelNamePrefix>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configOptions>
                                 <useRuntimeException>true</useRuntimeException>

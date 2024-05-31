@@ -122,7 +122,7 @@ export type LoyaltyProgramInput = {
 
 export type Mutation = {
   __typename?: "Mutation";
-  bookTicket: BookResult;
+  bookTicket?: Maybe<Scalars["Void"]>;
   deleteClient?: Maybe<Scalars["Void"]>;
   deleteLoyaltyProgram?: Maybe<Scalars["Void"]>;
   deleteTicket?: Maybe<Scalars["Void"]>;
@@ -367,37 +367,7 @@ export type BookTicket_BuyTicketButtonMutationVariables = Exact<{
 
 export type BookTicket_BuyTicketButtonMutation = {
   __typename?: "Mutation";
-  bookTicket: {
-    __typename?: "BookResult";
-    ticket?: {
-      __typename?: "TicketDto";
-      id?: string | null;
-      price?: any | null;
-      client?: {
-        __typename?: "ClientDto";
-        id?: string | null;
-        firstName?: string | null;
-        lastName?: string | null;
-        email?: string | null;
-        gender?: Gender | null;
-        loyaltyProgram?: {
-          __typename?: "LoyaltyProgram";
-          id?: string | null;
-          name?: string | null;
-          discountPercent?: any | null;
-        } | null;
-      } | null;
-      flight?: {
-        __typename?: "FlightDto";
-        id?: any | null;
-        number?: number | null;
-        airlineName?: string | null;
-        airlineCode?: string | null;
-        takeoffDate?: any | null;
-        landingDate?: any | null;
-      } | null;
-    } | null;
-  };
+  bookTicket?: any | null;
 };
 
 export type UpdateLoyaltyProgramMutationVariables = Exact<{
@@ -560,13 +530,6 @@ export type UserInfoQuery = {
     fullName?: string | null;
     avatar?: string | null;
   } | null;
-};
-
-export type CheckAuthenticatedQueryVariables = Exact<{ [key: string]: never }>;
-
-export type CheckAuthenticatedQuery = {
-  __typename?: "Query";
-  checkAuthenticated?: any | null;
 };
 
 export type UserPermissionsQueryVariables = Exact<{ [key: string]: never }>;
@@ -1071,108 +1034,6 @@ export const BookTicket_BuyTicketButtonDocument = {
                 },
               },
             ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "ticket" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "price" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "client" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "firstName" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "lastName" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "email" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "gender" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "loyaltyProgram" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "name" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "discountPercent",
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "flight" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "number" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "airlineName" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "airlineCode" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "takeoffDate" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "landingDate" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
           },
         ],
       },
@@ -1780,28 +1641,6 @@ export const UserInfoDocument = {
     },
   ],
 } as unknown as DocumentNode<UserInfoQuery, UserInfoQueryVariables>;
-export const CheckAuthenticatedDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "checkAuthenticated" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "checkAuthenticated" },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CheckAuthenticatedQuery,
-  CheckAuthenticatedQueryVariables
->;
 export const UserPermissionsDocument = {
   kind: "Document",
   definitions: [

@@ -108,11 +108,19 @@ function BuyTicketButton({flightId, clientId}: BuyTicketButtonParams) {
   }
   const notify = useNotify();
   return (
-    <Button onClick={e => {
+    <Button onClick={async e => {
       const clId = clientId()
-      if (clId == null) {
-        notify("Client is required for booking", {type: 'warning'})
-      }
+        if (clId === null) {
+            notify("Client is required for booking", {type: 'warning'})
+        } else {
+            // await runBookTicket({
+            //     variables: {
+            //         flightId: flightId,
+            //         clientId: clId
+            //     }
+            // })
+            notify(`Ticket booked successfully`, {type: "success"});
+        }
     }}>Buy ticket</Button>
   )
 }
@@ -142,6 +150,14 @@ export function FlightSearch() {
   const [clientId, setClientId] = useState()
 
   const doSearchFlights = (data: Record<string, any>) => {
+      // loadFlightList({
+      //     variables: {
+      //         from: data.from,
+      //         to: data.to,
+      //         dateMin: data.fromDate,
+      //         dateMax: data.toDate
+      //     }
+      // })
   };
 
   return (
@@ -238,18 +254,14 @@ TicketDto toDto(Ticket ticket);
 # TicketController#bookTicket
 ```graphql
 type Mutation {
-bookTicket(flightId: ID!, clientId: ID!): BookResult!
-}
-
-type BookResult {
-    ticket: TicketDto
+bookTicket(flightId: ID!, clientId: ID!): Void
 }
 ```
 
 ```java
 @MutationMapping(name = "bookTicket")
 @NotNull
-public BookResult bookTicket(@Argument @NotNull @GraphQLId Long flightId, @Argument @NotNull @GraphQLId UUID clientId) {
+public void bookTicket(@Argument @NotNull @GraphQLId Long flightId, @Argument @NotNull @GraphQLId UUID clientId) {
 }
 ```
 

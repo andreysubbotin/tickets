@@ -61,34 +61,8 @@ mutation BookTicket_BuyTicketButton(
     bookTicket(
         flightId: $flightId,
         clientId: $clientId
-) {
-        ticket {
-            id
-            price
-            client {
-                id
-                firstName
-                lastName
-                email
-                gender
-                loyaltyProgram {
-                    id
-                    name
-                    discountPercent
-                }
-            }
-            flight {
-                id
-                number
-                airlineName
-                airlineCode
-                takeoffDate
-                landingDate
-            }
-        }
-    }
-}
-`);
+) }`
+);
 
 function SearchFormToolbar() {
   return (

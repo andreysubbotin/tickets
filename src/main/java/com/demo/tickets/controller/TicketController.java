@@ -3,7 +3,6 @@ package com.demo.tickets.controller;
 import com.amplicode.core.graphql.annotation.GraphQLId;
 import com.amplicode.core.graphql.paging.OffsetPageInput;
 import com.amplicode.core.graphql.paging.ResultPage;
-import com.demo.tickets.dto.BookResult;
 import com.demo.tickets.dto.TicketDto;
 import com.demo.tickets.dto.TicketMapper;
 import com.demo.tickets.mongo.Ticket;
@@ -65,8 +64,8 @@ public class TicketController {
     @Secured("ROLE_BOOKER")
     @MutationMapping(name = "bookTicket")
     @NotNull
-    public BookResult bookTicket(@Argument @NotNull @GraphQLId Long flightId, @Argument @NotNull @GraphQLId UUID clientId) {
-        return ticketService.bookTicket(flightId, clientId);
+    public void bookTicket(@Argument @NotNull @GraphQLId Long flightId, @Argument @NotNull @GraphQLId UUID clientId) {
+        ticketService.bookTicket(flightId, clientId);
     }
 
     @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})

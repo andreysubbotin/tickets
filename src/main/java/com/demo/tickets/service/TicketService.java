@@ -1,16 +1,12 @@
 package com.demo.tickets.service;
 
 import com.demo.notifications.TicketConfirmationMessage;
-import com.demo.tickets.dto.BookResult;
-import com.demo.tickets.dto.TicketMapper;
 import com.demo.tickets.external.flight.api.FlightControllerApi;
-import com.demo.tickets.external.flight.model.FtFlightDto;
+import com.demo.tickets.external.flight.model.FlFlightDto;
 import com.demo.tickets.jpa.Client;
 import com.demo.tickets.jpa.ClientRepository;
 import com.demo.tickets.mongo.Ticket;
 import com.demo.tickets.mongo.TicketRepository;
-//import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,23 +18,20 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final FlightControllerApi flightControllerApi;
     private final ClientRepository clientRepository;
-
-    private final TicketMapper ticketMapper;
+    private final NotificationService notificationService;
 
     public TicketService(TicketRepository ticketRepository,
                          FlightControllerApi flightControllerApi,
                          ClientRepository clientRepository,
-                         TicketMapper ticketMapper,
-                         KafkaTemplate<UUID, TicketConfirmationMessage> ticketConfirmationMessageKafkaTemplate) {
+                         NotificationService notificationService) {
         this.ticketRepository = ticketRepository;
         this.flightControllerApi = flightControllerApi;
         this.clientRepository = clientRepository;
-        this.ticketMapper = ticketMapper;
-        this.ticketConfirmationMessageKafkaTemplate = ticketConfirmationMessageKafkaTemplate;
+        this.notificationService = notificationService;
     }
 
-    public BookResult bookTicket(Long flightId, UUID clientId) {
-        FtFlightDto flight = flightControllerApi.findById(flightId);
+    public void bookTicket(Long flightId, UUID clientId) {
+        FlFlightDto flight = flightControllerApi.findById(flightId);
         if (flight == null) {
             throw new IllegalStateException(String.format("Flight %s not found", flightId));
         }
@@ -47,11 +40,6 @@ public class TicketService {
 
         Ticket ticket = createTicket(flightId, clientId);
         notifyClient(client, flight, ticket);
-
-        BookResult res = new BookResult();
-        res.setTicket(ticketMapper.toDto(ticket));
-
-        return res;
     }
 
     private Ticket createTicket(Long flightId, UUID clientId) {
@@ -68,10 +56,7 @@ public class TicketService {
         return ticket;
     }
 
-
-    private final KafkaTemplate<UUID, TicketConfirmationMessage> ticketConfirmationMessageKafkaTemplate;
-
-    private void notifyClient(Client client, FtFlightDto flight, Ticket ticket) {
+    private void notifyClient(Client client, FlFlightDto flight, Ticket ticket) {
         TicketConfirmationMessage message = new TicketConfirmationMessage();
         message.setEmail(client.getEmail());
         if (flight.getNumber() != null) {
@@ -81,8 +66,6 @@ public class TicketService {
         if (flight.getTakeoffDate() != null) {
             message.setTakeoffDate(flight.getTakeoffDate().toLocalDateTime());
         }
-        ticketConfirmationMessageKafkaTemplate.send("ticketConfirmation", message);
-//
-//        ticketConfirmationMessageKafkaTemplate.send("ticketConfirmation", message);
+        notificationService.sendTicketMessage(message);
     }
 }

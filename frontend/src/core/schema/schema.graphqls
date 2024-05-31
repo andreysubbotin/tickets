@@ -70,7 +70,7 @@ type Mutation {
   deleteClient(id: ID!): Void
   updateClient(input: ClientDtoInput!): ClientDto!
   deleteTicket(id: ID!): Void
-  bookTicket(flightId: ID!, clientId: ID!): BookResult!
+  bookTicket(flightId: ID!, clientId: ID!): Void
 }
 
 type AirportDto {
