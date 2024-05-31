@@ -21,6 +21,10 @@ const documents = {
     types.ClientListDocument,
   "mutation DeleteClient($id: ID!) {\n\tdeleteClient(id: $id) \n}":
     types.DeleteClientDocument,
+  "\nquery FlightList_FlightSearch(\n    $from: Int!,\n    $to: Int!,\n    $dateMin: Date!,\n    $dateMax: Date!\n) {\n    flightList(\n        from: $from,\n        to: $to,\n        dateMin: $dateMin,\n        dateMax: $dateMax\n) {\n        id\n        number\n        airlineName\n        airlineCode\n        fromAirport {\n            id\n            name\n            code\n        }\n        toAirport {\n            id\n            name\n            code\n        }\n        takeoffDate\n        landingDate\n    }\n}\n":
+    types.FlightList_FlightSearchDocument,
+  "\nmutation BookTicket_BuyTicketButton(\n    $flightId: ID!,\n    $clientId: ID!\n) {\n    bookTicket(\n        flightId: $flightId,\n        clientId: $clientId\n) {\n        ticket {\n            id\n            price\n            client {\n                id\n                firstName\n                lastName\n                email\n                gender\n                loyaltyProgram {\n                    id\n                    name\n                    discountPercent\n                }\n            }\n            flight {\n                id\n                number\n                airlineName\n                airlineCode\n                takeoffDate\n                landingDate\n            }\n        }\n    }\n}\n":
+    types.BookTicket_BuyTicketButtonDocument,
   "mutation UpdateLoyaltyProgram($input: LoyaltyProgramInput!) {\n\tupdateLoyaltyProgram(input: $input) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}":
     types.UpdateLoyaltyProgramDocument,
   "query LoyaltyProgram($id: ID!) {\n\tloyaltyProgram(id: $id) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}":
@@ -29,6 +33,12 @@ const documents = {
     types.LoyaltyProgramListDocument,
   "mutation DeleteLoyaltyProgram($id: ID!) {\n\tdeleteLoyaltyProgram(id: $id) \n}":
     types.DeleteLoyaltyProgramDocument,
+  "query TicketList_TicketList(\n    $page: OffsetPageInput,\n    $sort: [TicketOrderByInput],\n    $filter: TicketFilterInput\n) {\n    ticketList(\n        page: $page,\n        sort: $sort,\n        filter: $filter\n) {\n        content {\n            id\n            price\n            client {\n                id\n                firstName\n                lastName\n                email\n                gender\n            }\n            flight {\n                id\n                number\n                airlineName\n                airlineCode\n                fromAirport {\n                    id\n                    name\n                    code\n                }\n                toAirport {\n                    id\n                    name\n                    code\n                }\n                takeoffDate\n                landingDate\n            }\n        }\n        totalElements\n    }\n}":
+    types.TicketList_TicketListDocument,
+  "mutation DeleteTicket_TicketList($id: ID!) {\n  deleteTicket(id: $id) \n}":
+    types.DeleteTicket_TicketListDocument,
+  "query Ticket($id: ID!) {\n  ticket(id: $id) {\n    id\n    price\n    client {\n      id\n      firstName\n      lastName\n      email\n      gender\n    }\n    flight {\n      id\n      number\n      airlineName\n      airlineCode\n      fromAirport {\n        id\n        name\n        code\n      }\n      toAirport {\n        id\n        name\n        code\n      }\n      takeoffDate\n      landingDate\n    }\n  }\n}":
+    types.TicketDocument,
   "\n  query userInfo {\n   userInfo {\n     id\n     fullName\n     avatar\n   }\n  }\n":
     types.UserInfoDocument,
   "\n query checkAuthenticated {\n   checkAuthenticated\n }\n":
@@ -79,6 +89,18 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
+  source: "\nquery FlightList_FlightSearch(\n    $from: Int!,\n    $to: Int!,\n    $dateMin: Date!,\n    $dateMax: Date!\n) {\n    flightList(\n        from: $from,\n        to: $to,\n        dateMin: $dateMin,\n        dateMax: $dateMax\n) {\n        id\n        number\n        airlineName\n        airlineCode\n        fromAirport {\n            id\n            name\n            code\n        }\n        toAirport {\n            id\n            name\n            code\n        }\n        takeoffDate\n        landingDate\n    }\n}\n",
+): (typeof documents)["\nquery FlightList_FlightSearch(\n    $from: Int!,\n    $to: Int!,\n    $dateMin: Date!,\n    $dateMax: Date!\n) {\n    flightList(\n        from: $from,\n        to: $to,\n        dateMin: $dateMin,\n        dateMax: $dateMax\n) {\n        id\n        number\n        airlineName\n        airlineCode\n        fromAirport {\n            id\n            name\n            code\n        }\n        toAirport {\n            id\n            name\n            code\n        }\n        takeoffDate\n        landingDate\n    }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\nmutation BookTicket_BuyTicketButton(\n    $flightId: ID!,\n    $clientId: ID!\n) {\n    bookTicket(\n        flightId: $flightId,\n        clientId: $clientId\n) {\n        ticket {\n            id\n            price\n            client {\n                id\n                firstName\n                lastName\n                email\n                gender\n                loyaltyProgram {\n                    id\n                    name\n                    discountPercent\n                }\n            }\n            flight {\n                id\n                number\n                airlineName\n                airlineCode\n                takeoffDate\n                landingDate\n            }\n        }\n    }\n}\n",
+): (typeof documents)["\nmutation BookTicket_BuyTicketButton(\n    $flightId: ID!,\n    $clientId: ID!\n) {\n    bookTicket(\n        flightId: $flightId,\n        clientId: $clientId\n) {\n        ticket {\n            id\n            price\n            client {\n                id\n                firstName\n                lastName\n                email\n                gender\n                loyaltyProgram {\n                    id\n                    name\n                    discountPercent\n                }\n            }\n            flight {\n                id\n                number\n                airlineName\n                airlineCode\n                takeoffDate\n                landingDate\n            }\n        }\n    }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
   source: "mutation UpdateLoyaltyProgram($input: LoyaltyProgramInput!) {\n\tupdateLoyaltyProgram(input: $input) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}",
 ): (typeof documents)["mutation UpdateLoyaltyProgram($input: LoyaltyProgramInput!) {\n\tupdateLoyaltyProgram(input: $input) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}"];
 /**
@@ -99,6 +121,24 @@ export function gql(
 export function gql(
   source: "mutation DeleteLoyaltyProgram($id: ID!) {\n\tdeleteLoyaltyProgram(id: $id) \n}",
 ): (typeof documents)["mutation DeleteLoyaltyProgram($id: ID!) {\n\tdeleteLoyaltyProgram(id: $id) \n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "query TicketList_TicketList(\n    $page: OffsetPageInput,\n    $sort: [TicketOrderByInput],\n    $filter: TicketFilterInput\n) {\n    ticketList(\n        page: $page,\n        sort: $sort,\n        filter: $filter\n) {\n        content {\n            id\n            price\n            client {\n                id\n                firstName\n                lastName\n                email\n                gender\n            }\n            flight {\n                id\n                number\n                airlineName\n                airlineCode\n                fromAirport {\n                    id\n                    name\n                    code\n                }\n                toAirport {\n                    id\n                    name\n                    code\n                }\n                takeoffDate\n                landingDate\n            }\n        }\n        totalElements\n    }\n}",
+): (typeof documents)["query TicketList_TicketList(\n    $page: OffsetPageInput,\n    $sort: [TicketOrderByInput],\n    $filter: TicketFilterInput\n) {\n    ticketList(\n        page: $page,\n        sort: $sort,\n        filter: $filter\n) {\n        content {\n            id\n            price\n            client {\n                id\n                firstName\n                lastName\n                email\n                gender\n            }\n            flight {\n                id\n                number\n                airlineName\n                airlineCode\n                fromAirport {\n                    id\n                    name\n                    code\n                }\n                toAirport {\n                    id\n                    name\n                    code\n                }\n                takeoffDate\n                landingDate\n            }\n        }\n        totalElements\n    }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "mutation DeleteTicket_TicketList($id: ID!) {\n  deleteTicket(id: $id) \n}",
+): (typeof documents)["mutation DeleteTicket_TicketList($id: ID!) {\n  deleteTicket(id: $id) \n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "query Ticket($id: ID!) {\n  ticket(id: $id) {\n    id\n    price\n    client {\n      id\n      firstName\n      lastName\n      email\n      gender\n    }\n    flight {\n      id\n      number\n      airlineName\n      airlineCode\n      fromAirport {\n        id\n        name\n        code\n      }\n      toAirport {\n        id\n        name\n        code\n      }\n      takeoffDate\n      landingDate\n    }\n  }\n}",
+): (typeof documents)["query Ticket($id: ID!) {\n  ticket(id: $id) {\n    id\n    price\n    client {\n      id\n      firstName\n      lastName\n      email\n      gender\n    }\n    flight {\n      id\n      number\n      airlineName\n      airlineCode\n      fromAirport {\n        id\n        name\n        code\n      }\n      toAirport {\n        id\n        name\n        code\n      }\n      takeoffDate\n      landingDate\n    }\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

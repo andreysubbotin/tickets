@@ -1,9 +1,4 @@
 # THIS FILE WAS GENERATED AUTOMATICALLY. DO NOT EDIT.
-schema {
-  query: Query
-  mutation: Mutation
-}
-
 directive @assertFalse on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
 
 directive @assertTrue on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
@@ -54,7 +49,7 @@ directive @size(max: Int = 2147483647, min: Int = 0) on ARGUMENT_DEFINITION | IN
 
 directive @url on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
 
-"Query root"
+# Query root
 type Query {
   checkAuthenticated: Void
   userInfo: UserInfo
@@ -63,6 +58,10 @@ type Query {
   loyaltyProgram(id: ID!): LoyaltyProgram!
   clientList(filter: ClientFilterInput, sort: [ClientOrderByInput], page: OffsetPageInput): ClientDtoResultPage!
   client(id: ID!): ClientDto!
+  airportList: [AirportDto]!
+  flightList(from: Int!, to: Int!, dateMin: Date!, dateMax: Date!): [FlightDto]!
+  ticket(id: ID!): TicketDto!
+  ticketList(page: OffsetPageInput, sort: [TicketOrderByInput], filter: TicketFilterInput): TicketDtoResultPage!
 }
 
 type Mutation {
@@ -70,6 +69,18 @@ type Mutation {
   updateLoyaltyProgram(input: LoyaltyProgramInput!): LoyaltyProgram!
   deleteClient(id: ID!): Void
   updateClient(input: ClientDtoInput!): ClientDto!
+  deleteTicket(id: ID!): Void
+  bookTicket(flightId: ID!, clientId: ID!): BookResult!
+}
+
+type AirportDto {
+  id: Int
+  name: String
+  code: String
+}
+
+type BookResult {
+  ticket: TicketDto
 }
 
 type ClientDto {
@@ -91,13 +102,36 @@ type FileUploadResponse {
   uploadUrl: Url!
 }
 
+type FlightDto {
+  id: Long
+  number: Int
+  airlineName: String
+  airlineCode: String
+  fromAirport: AirportDto
+  toAirport: AirportDto
+  takeoffDate: DateTime
+  landingDate: DateTime
+}
+
 type LoyaltyProgram {
   id: ID
   name: String
   discountPercent: BigDecimal
 }
 
-"Contains information about user"
+type TicketDto {
+  id: ID
+  price: BigDecimal
+  client: ClientDto
+  flight: FlightDto
+}
+
+type TicketDtoResultPage {
+  content: [TicketDto]
+  totalElements: Long!
+}
+
+# Contains information about user
 type UserInfo {
   id: String!
   fullName: String
@@ -108,7 +142,7 @@ input ClientDtoInput {
   id: ID
   firstName: String
   lastName: String
-  email: String @email(regexp: ".*")
+  email: String
   gender: Gender
   loyaltyProgram: LoyaltyProgramInput
 }
@@ -127,12 +161,21 @@ input ClientOrderByInput {
 input LoyaltyProgramInput {
   id: ID
   name: String
-  discountPercent: BigDecimal @positive
+  discountPercent: BigDecimal
 }
 
 input OffsetPageInput {
   number: Int!
   size: Int!
+}
+
+input TicketFilterInput {
+  clientId: String
+}
+
+input TicketOrderByInput {
+  property: TicketOrderByProperty
+  direction: SortDirection
 }
 
 enum ClientOrderByProperty {
@@ -150,25 +193,29 @@ enum SortDirection {
   DESC
 }
 
-scalar BigDecimal @javaType(name: "java.math.BigDecimal")
+enum TicketOrderByProperty {
+  PRICE
+}
 
-scalar BigInteger @javaType(name: "java.math.BigInteger")
+scalar BigDecimal
 
-scalar Date @javaType(name: "java.time.LocalDate")
+scalar BigInteger
 
-scalar DateTime @javaType(name: "java.time.OffsetDateTime")
+scalar Date
 
-scalar LocalDateTime @javaType(name: "java.time.LocalDateTime")
+scalar DateTime
 
-scalar LocalTime @javaType(name: "java.time.LocalTime")
+scalar LocalDateTime
 
-scalar Long @javaType(name: "java.lang.Long")
+scalar LocalTime
 
-scalar Time @javaType(name: "java.time.OffsetTime")
+scalar Long
 
-scalar Timestamp @javaType(name: "java.util.Date")
+scalar Time
 
-scalar Url @javaType(name: "java.net.URL")
+scalar Timestamp
 
-scalar Void @javaType(name: "java.lang.Void")
+scalar Url
+
+scalar Void
 

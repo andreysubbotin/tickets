@@ -1,9 +1,12 @@
 import { DevSupport } from "@amplicode/ide-toolbox";
-import { AdminContext, AdminUI, Loading } from "react-admin";
+import { AdminContext, AdminUI, CustomRoutes, Loading } from "react-admin";
+import { Route } from "react-router";
 import { useAuthProvider } from "../authProvider/useAuthProvider";
 import { getClientDtoRecordRepresentation } from "../core/record-representation/getClientDtoRecordRepresentation";
 import { getLoyaltyProgramRecordRepresentation } from "../core/record-representation/getLoyaltyProgramRecordRepresentation";
+import { getTicketDtoRecordRepresentation } from "../core/record-representation/getTicketDtoRecordRepresentation";
 import { ResourceSecured } from "../core/security/components/ResourceSecured";
+import { RouteSecured } from "../core/security/components/RouteSecured";
 import { dataProvider } from "../dataProvider/graphqlDataProvider";
 import { ComponentPreviews, useInitial } from "../dev";
 import { i18nProvider } from "../i18nProvider";
@@ -11,9 +14,12 @@ import { AdminLayout } from "./AdminLayout";
 import { ClientCreate } from "./screens/client/ClientCreate";
 import { ClientEdit } from "./screens/client/ClientEdit";
 import { ClientList } from "./screens/client/ClientList";
+import { FlightSearch } from "./screens/flight/FlightSearch";
 import { LoyaltyProgramCreate } from "./screens/loyalty-program/LoyaltyProgramCreate";
 import { LoyaltyProgramEdit } from "./screens/loyalty-program/LoyaltyProgramEdit";
 import { LoyaltyProgramList } from "./screens/loyalty-program/LoyaltyProgramList";
+import { TicketList } from "./screens/ticket/TicketList";
+import { TicketShow } from "./screens/ticket/TicketShow";
 import { activeAppTheme } from "./themes/appThemeConfig";
 import { getStoredThemeMode } from "./themes/getStoredThemeMode";
 
@@ -55,6 +61,22 @@ export const App = () => {
             recordRepresentation={getClientDtoRecordRepresentation}
             create={ClientCreate}
             edit={ClientEdit}
+          />
+          <CustomRoutes>
+            <Route
+              path="flight-search"
+              element={
+                <RouteSecured name="FlightSearch">
+                  <FlightSearch />
+                </RouteSecured>
+              }
+            />
+          </CustomRoutes>
+          <ResourceSecured
+            name="TicketDto"
+            list={TicketList}
+            recordRepresentation={getTicketDtoRecordRepresentation}
+            show={TicketShow}
           />
         </AdminUI>
       </DevSupport>

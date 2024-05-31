@@ -318,8 +318,8 @@ pageResult.getTotalElements()
 # TicketList.tsx adjustments
 ```typescript jsx
 const filters = [
-<ReferenceInput source="clientId" reference="Client" alwaysOn >
-<AutocompleteInput optionText={getClientRecordRepresentation} sx={{width: "15em"}}/>
+<ReferenceInput source="clientId" reference="ClientDto" alwaysOn >
+<AutocompleteInput optionText={getClientDtoRecordRepresentation} sx={{width: "15em"}}/>
 </ReferenceInput>
 ];
 ```
@@ -363,4 +363,6 @@ message.setTakeoffDate(flight.getTakeoffDate().toLocalDateTime());
     ticketConfirmationMessageKafkaTemplate.send("ticketConfirmation", message); 
 } 
 ```
+
+
  

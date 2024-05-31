@@ -8,6 +8,7 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.lang.NonNull;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ public class LoyaltyProgramController {
 
     @MutationMapping(name = "deleteLoyaltyProgram")
     @Transactional
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     public void delete(@GraphQLId @Argument @NonNull UUID id) {
         LoyaltyProgram entity = crudRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(String.format("Unable to find entity by id: %s ", id)));
@@ -33,6 +35,7 @@ public class LoyaltyProgramController {
 
     @QueryMapping(name = "loyaltyProgramList")
     @Transactional(readOnly = true)
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     @NonNull
     public List<LoyaltyProgram> findAll() {
         return crudRepository.findAll();
@@ -40,6 +43,7 @@ public class LoyaltyProgramController {
 
     @QueryMapping(name = "loyaltyProgram")
     @Transactional(readOnly = true)
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     @NonNull
     public LoyaltyProgram findById(@GraphQLId @Argument @NonNull UUID id) {
         return crudRepository.findById(id)
@@ -48,6 +52,7 @@ public class LoyaltyProgramController {
 
     @MutationMapping(name = "updateLoyaltyProgram")
     @Transactional
+    @Secured({"ROLE_BOOKER", "ROLE_VIEWER"})
     @NonNull
     public LoyaltyProgram update(@Argument @NonNull @Valid LoyaltyProgram input) {
         if (input.getId() != null) {

@@ -6,6 +6,22 @@ const messages: TranslationMessages = {
   ...englishMessages,
 
   resources: {
+    TicketDto: {
+      name: "Ticket |||| Tickets",
+
+      fields: {
+        price: "Price",
+
+        client: {
+          id: "Client"
+        },
+
+        flight: {
+          id: "Flight"
+        }
+      }
+    },
+
     ClientDto: {
       name: "Client |||| Clients",
 
@@ -29,6 +45,10 @@ const messages: TranslationMessages = {
         discountPercent: "Discount Percent"
       }
     }
+  },
+
+  pages: {
+    FlightSearch: "Flight Search"
   },
 
   enums: {
