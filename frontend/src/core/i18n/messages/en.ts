@@ -5,6 +5,10 @@ import { mergeMessages } from "./mergeMessages";
 const messages: TranslationMessages = {
   ...englishMessages,
 
+  pages: {
+    FlightSearch: "Flight Search"
+  },
+
   resources: {
     ClientDto: {
       name: "Client |||| Clients",

@@ -1,6 +1,5 @@
 schema {
     query: Query
-    mutation: Mutation
 }
 
 "Query root"
@@ -8,13 +7,6 @@ type Query {
     checkAuthenticated: Void # a system query to check whether a user is authenticated or not. If not, GraphQL error is returned.
     userInfo: UserInfo # a system query to get an authenticated user details
     userPermissions: [String] # a system query to security roles for an authenticated user
-    loyaltyProgramList: [LoyaltyProgram]!
-    loyaltyProgram(id: ID!): LoyaltyProgram!
-}
-
-type Mutation {
-    deleteLoyaltyProgram(id: ID!): Void
-    updateLoyaltyProgram(input: LoyaltyProgramInput!): LoyaltyProgram!
 }
 
 "Contains information about user"
@@ -24,16 +16,4 @@ type UserInfo {
     avatar: String # user's profile picture as URL or Base64 string
 }
 
-type LoyaltyProgram {
-    id: ID
-    name: String
-    discountPercent: BigDecimal
-}
-
-
-input LoyaltyProgramInput {
-    id: ID
-    name: String
-    discountPercent: BigDecimal @positive
-}
 

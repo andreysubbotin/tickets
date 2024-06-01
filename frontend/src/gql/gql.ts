@@ -13,22 +13,6 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  "mutation UpdateClient($input: ClientDtoInput!) {\n\tupdateClient(input: $input) {\n\t\tid\n\t\tfirstName\n\t\tlastName\n\t\temail\n\t\tgender\n\t\tloyaltyProgram {\n\t\t\tid\n\t\t\tname\n\t\t\tdiscountPercent\n\t\t}\n\t}\n}":
-    types.UpdateClientDocument,
-  "query Client($id: ID!) {\n\tclient(id: $id) {\n\t\tid\n\t\tfirstName\n\t\tlastName\n\t\temail\n\t\tgender\n\t\tloyaltyProgram {\n\t\t\tid\n\t\t\tname\n\t\t\tdiscountPercent\n\t\t}\n\t}\n}":
-    types.ClientDocument,
-  "query ClientList($filter: ClientFilterInput $sort: [ClientOrderByInput] $page: OffsetPageInput) {\n\tclientList(filter: $filter sort: $sort page: $page) {\n\t\tcontent {\n\t\t\tid\n\t\t\tfirstName\n\t\t\tlastName\n\t\t\temail\n\t\t\tgender\n\t\t\tloyaltyProgram {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdiscountPercent\n\t\t\t}\n\t\t}\n\t\ttotalElements\n\t}\n}":
-    types.ClientListDocument,
-  "mutation DeleteClient($id: ID!) {\n\tdeleteClient(id: $id) \n}":
-    types.DeleteClientDocument,
-  "mutation UpdateLoyaltyProgram($input: LoyaltyProgramInput!) {\n\tupdateLoyaltyProgram(input: $input) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}":
-    types.UpdateLoyaltyProgramDocument,
-  "query LoyaltyProgram($id: ID!) {\n\tloyaltyProgram(id: $id) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}":
-    types.LoyaltyProgramDocument,
-  "query LoyaltyProgramList {\n\tloyaltyProgramList {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}":
-    types.LoyaltyProgramListDocument,
-  "mutation DeleteLoyaltyProgram($id: ID!) {\n\tdeleteLoyaltyProgram(id: $id) \n}":
-    types.DeleteLoyaltyProgramDocument,
   "\n  query userInfo {\n   userInfo {\n     id\n     fullName\n     avatar\n   }\n  }\n":
     types.UserInfoDocument,
   "\n query checkAuthenticated {\n   checkAuthenticated\n }\n":
@@ -51,54 +35,6 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "mutation UpdateClient($input: ClientDtoInput!) {\n\tupdateClient(input: $input) {\n\t\tid\n\t\tfirstName\n\t\tlastName\n\t\temail\n\t\tgender\n\t\tloyaltyProgram {\n\t\t\tid\n\t\t\tname\n\t\t\tdiscountPercent\n\t\t}\n\t}\n}",
-): (typeof documents)["mutation UpdateClient($input: ClientDtoInput!) {\n\tupdateClient(input: $input) {\n\t\tid\n\t\tfirstName\n\t\tlastName\n\t\temail\n\t\tgender\n\t\tloyaltyProgram {\n\t\t\tid\n\t\t\tname\n\t\t\tdiscountPercent\n\t\t}\n\t}\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "query Client($id: ID!) {\n\tclient(id: $id) {\n\t\tid\n\t\tfirstName\n\t\tlastName\n\t\temail\n\t\tgender\n\t\tloyaltyProgram {\n\t\t\tid\n\t\t\tname\n\t\t\tdiscountPercent\n\t\t}\n\t}\n}",
-): (typeof documents)["query Client($id: ID!) {\n\tclient(id: $id) {\n\t\tid\n\t\tfirstName\n\t\tlastName\n\t\temail\n\t\tgender\n\t\tloyaltyProgram {\n\t\t\tid\n\t\t\tname\n\t\t\tdiscountPercent\n\t\t}\n\t}\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "query ClientList($filter: ClientFilterInput $sort: [ClientOrderByInput] $page: OffsetPageInput) {\n\tclientList(filter: $filter sort: $sort page: $page) {\n\t\tcontent {\n\t\t\tid\n\t\t\tfirstName\n\t\t\tlastName\n\t\t\temail\n\t\t\tgender\n\t\t\tloyaltyProgram {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdiscountPercent\n\t\t\t}\n\t\t}\n\t\ttotalElements\n\t}\n}",
-): (typeof documents)["query ClientList($filter: ClientFilterInput $sort: [ClientOrderByInput] $page: OffsetPageInput) {\n\tclientList(filter: $filter sort: $sort page: $page) {\n\t\tcontent {\n\t\t\tid\n\t\t\tfirstName\n\t\t\tlastName\n\t\t\temail\n\t\t\tgender\n\t\t\tloyaltyProgram {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdiscountPercent\n\t\t\t}\n\t\t}\n\t\ttotalElements\n\t}\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "mutation DeleteClient($id: ID!) {\n\tdeleteClient(id: $id) \n}",
-): (typeof documents)["mutation DeleteClient($id: ID!) {\n\tdeleteClient(id: $id) \n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "mutation UpdateLoyaltyProgram($input: LoyaltyProgramInput!) {\n\tupdateLoyaltyProgram(input: $input) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}",
-): (typeof documents)["mutation UpdateLoyaltyProgram($input: LoyaltyProgramInput!) {\n\tupdateLoyaltyProgram(input: $input) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "query LoyaltyProgram($id: ID!) {\n\tloyaltyProgram(id: $id) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}",
-): (typeof documents)["query LoyaltyProgram($id: ID!) {\n\tloyaltyProgram(id: $id) {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "query LoyaltyProgramList {\n\tloyaltyProgramList {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}",
-): (typeof documents)["query LoyaltyProgramList {\n\tloyaltyProgramList {\n\t\tid\n\t\tname\n\t\tdiscountPercent\n\t}\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "mutation DeleteLoyaltyProgram($id: ID!) {\n\tdeleteLoyaltyProgram(id: $id) \n}",
-): (typeof documents)["mutation DeleteLoyaltyProgram($id: ID!) {\n\tdeleteLoyaltyProgram(id: $id) \n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
