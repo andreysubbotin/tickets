@@ -3,7 +3,7 @@
 //import com.demo.tickets.dto.ClientDto;
 //import com.demo.tickets.dto.ClientMapper;
 //import com.demo.tickets.dto.FlightDto;
-//import com.demo.tickets.dto.FtFlightDtoMapper;
+//import com.demo.tickets.dto.FlFlightDtoMapper;
 //import com.demo.tickets.external.flight.api.FlightControllerApi;
 //import com.demo.tickets.jpa.ClientRepository;
 //import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +21,7 @@
 //
 //    public TicketMappingService(ClientRepository clientRepository,
 //                                ClientMapper clientMapper,
-//                                FtFlightDtoMapper flightMapper,
+//                                FlFlightDtoMapper flightMapper,
 //                                @Qualifier("flightFlightControllerApi") FlightControllerApi flightControllerApi) {
 //        this.clientMapper = clientMapper;
 //        this.flightMapper = flightMapper;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * DTO for {@link com.demo.tickets.external.flight.model.FtAirportDto}
+ * DTO for {@link com.demo.tickets.external.flight.model.FlAirportDto}
  */
 public class AirportDto implements Serializable {
     private Integer id;

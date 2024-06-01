@@ -5,7 +5,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface FtAirportDtoMapper {
+public interface FlAirportDtoMapper {
 //    FlAirportDto toEntity(AirportDto airportDto);
 //
 //    AirportDto toDto(FlAirportDto ftAirportDto);

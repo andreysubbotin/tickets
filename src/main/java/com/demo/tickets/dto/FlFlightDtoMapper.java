@@ -3,7 +3,7 @@ package com.demo.tickets.dto;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface FtFlightDtoMapper {
+public interface FlFlightDtoMapper {
 //    FlFlightDto toEntity(FlightDto flightDto);
 //
 //    FlightDto toDto(FlFlightDto ftFlightDto);

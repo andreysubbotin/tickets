@@ -5,7 +5,7 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 
 /**
- * DTO for {@link com.demo.tickets.external.flight.model.FtFlightDto}
+ * DTO for {@link com.demo.tickets.external.flight.model.FlFlightDto}
  */
 public class FlightDto implements Serializable {
     private Long id;
