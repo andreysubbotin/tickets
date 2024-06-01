@@ -5,10 +5,6 @@ import { mergeMessages } from "./mergeMessages";
 const messages: TranslationMessages = {
   ...englishMessages,
 
-  pages: {
-    FlightSearch: "Flight Search"
-  },
-
   resources: {
     ClientDto: {
       name: "Client |||| Clients",
@@ -40,6 +36,10 @@ const messages: TranslationMessages = {
       MALE: "Male",
       FEMALE: "Female"
     }
+  },
+
+  pages: {
+    FlightSearch: "Flight Search"
   },
 
   amplicode: {

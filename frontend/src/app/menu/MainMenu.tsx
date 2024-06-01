@@ -1,6 +1,7 @@
 import { WebAsset } from "@mui/icons-material";
 import { Menu } from "react-admin";
 import { MenuItemSecured } from "../../core/security/components/MenuItemSecured";
+import { MenuResourceItemSecured } from "../../core/security/components/MenuResourceItemSecured";
 
 export const MainMenu = () => {
   return (
@@ -12,6 +13,7 @@ export const MainMenu = () => {
         primaryText="pages.FlightSearch"
         leftIcon={<WebAsset />}
       />
+      <MenuResourceItemSecured name="ClientDto" />
     </Menu>
   );
 };

@@ -54,6 +54,26 @@ type Query {
   checkAuthenticated: Void
   userInfo: UserInfo
   userPermissions: [String]
+  clientList(filter: ClientFilterInput, sort: [ClientOrderByInput], page: OffsetPageInput): ClientDtoResultPage!
+  client(id: ID!): ClientDto!
+}
+
+type Mutation {
+  deleteClient(id: ID!): Void
+  updateClient(input: ClientDtoInput!): ClientDto!
+}
+
+type ClientDto {
+  id: String
+  firstName: String
+  lastName: String
+  email: String
+  gender: Gender
+}
+
+type ClientDtoResultPage {
+  content: [ClientDto]
+  totalElements: Long!
 }
 
 type FileUploadResponse {
@@ -68,9 +88,38 @@ type UserInfo {
   avatar: String
 }
 
+input ClientDtoInput {
+  id: String
+  firstName: String
+  lastName: String
+  email: String
+  gender: Gender
+}
+
+input ClientFilterInput {
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input ClientOrderByInput {
+  property: ClientOrderByProperty
+  direction: SortDirection
+}
+
 input OffsetPageInput {
   number: Int!
   size: Int!
+}
+
+enum ClientOrderByProperty {
+  FIRST_NAME
+  LAST_NAME
+}
+
+enum Gender {
+  MALE
+  FEMALE
 }
 
 enum SortDirection {
