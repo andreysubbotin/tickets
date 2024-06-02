@@ -14,6 +14,7 @@ export const MainMenu = () => {
         leftIcon={<WebAsset />}
       />
       <MenuResourceItemSecured name="ClientDto" />
+      <MenuResourceItemSecured name="TicketDto" />
     </Menu>
   );
 };
