@@ -379,6 +379,25 @@ export type DeleteTicket_TicketListMutation = {
   deleteTicket?: any | null;
 };
 
+export type UserInfoQueryVariables = Exact<{ [key: string]: never }>;
+
+export type UserInfoQuery = {
+  __typename?: "Query";
+  userInfo?: {
+    __typename?: "UserInfo";
+    id: string;
+    fullName?: string | null;
+    avatar?: string | null;
+  } | null;
+};
+
+export type UserPermissionsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type UserPermissionsQuery = {
+  __typename?: "Query";
+  userPermissions?: Array<string | null> | null;
+};
+
 export const UpdateClientDocument = {
   kind: "Document",
   definitions: [
@@ -1085,4 +1104,50 @@ export const DeleteTicket_TicketListDocument = {
 } as unknown as DocumentNode<
   DeleteTicket_TicketListMutation,
   DeleteTicket_TicketListMutationVariables
+>;
+export const UserInfoDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "userInfo" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "userInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                { kind: "Field", name: { kind: "Name", value: "avatar" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserInfoQuery, UserInfoQueryVariables>;
+export const UserPermissionsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "userPermissions" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "userPermissions" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UserPermissionsQuery,
+  UserPermissionsQueryVariables
 >;

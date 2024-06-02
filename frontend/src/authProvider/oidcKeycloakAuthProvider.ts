@@ -63,14 +63,14 @@ export const oidcKeycloakAuthProvider = (auth: AuthContextProps): AuthProvider =
         graphQLErrors.some((err: GraphQLError) => err.extensions?.classification === "UNAUTHORIZED")
       ) {
         await localStorage.removeItem(ID_TOKEN_STORAGE_KEY);
-        //await auth.signinRedirect();
+        await auth.signinRedirect();
       }
     }
 
     if (networkError !== null && "statusCode" in networkError) {
       if (networkError.statusCode === 401) {
         await localStorage.removeItem(ID_TOKEN_STORAGE_KEY);
-        //await auth.signinRedirect();
+        await auth.signinRedirect();
       }
     }
   },
@@ -81,7 +81,7 @@ export const oidcKeycloakAuthProvider = (auth: AuthContextProps): AuthProvider =
     }
 
     await localStorage.removeItem(ID_TOKEN_STORAGE_KEY);
-    //await auth.signinRedirect();
+    await auth.signinRedirect();
   },
   getPermissions: async (): Promise<string | null> => {
     let permissions: string | null = localStorage.getItem(PERMISSIONS_KEY);
