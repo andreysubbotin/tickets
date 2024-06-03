@@ -1,5 +1,6 @@
 schema {
     query: Query
+    mutation: Mutation
 }
 
 "Query root"
@@ -7,6 +8,19 @@ type Query {
     checkAuthenticated: Void # a system query to check whether a user is authenticated or not. If not, GraphQL error is returned.
     userInfo: UserInfo # a system query to get an authenticated user details
     userPermissions: [String] # a system query to security roles for an authenticated user
+    clientList(filter: ClientFilterInput, sort: [ClientOrderByInput], page: OffsetPageInput): ClientDtoResultPage!
+    client(id: ID!): ClientDto!
+    flightList(from: Int!, to: Int!, dateMin: Date!, dateMax: Date!): [FlightDto]!
+    airportList: [AirportDto]!
+    ticket(id: ID!): TicketDto!
+    ticketList(page: OffsetPageInput, sort: [TicketOrderByInput], filter: TicketFilterInput): TicketDtoResultPage!
+}
+
+type Mutation {
+    deleteClient(id: ID!): Void
+    updateClient(input: ClientDtoInput!): ClientDto!
+    bookTicket(flightId: ID!, clientId: ID!): Void
+    deleteTicket(id: ID!): Void
 }
 
 "Contains information about user"
@@ -14,6 +28,92 @@ type UserInfo {
     id: String! # user identifier
     fullName: String # user display name, e.g. full name or username
     avatar: String # user's profile picture as URL or Base64 string
+}
+
+type ClientDto {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String
+    gender: Gender
+}
+
+type ClientDtoResultPage {
+    content: [ClientDto]
+    totalElements: Long!
+}
+
+type AirportDto {
+    id: Int
+    name: String
+    code: String
+}
+
+type FlightDto {
+    id: Long
+    number: Int
+    airlineName: String
+    airlineCode: String
+    fromAirport: AirportDto
+    toAirport: AirportDto
+    takeoffDate: DateTime
+    landingDate: DateTime
+}
+
+type TicketDto {
+    id: ID
+    price: BigDecimal
+    createdBy: String
+    createdDate: LocalDateTime
+    client: ClientDto
+    flight: FlightDto
+}
+
+type TicketDtoResultPage {
+    content: [TicketDto]
+    totalElements: Long!
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+enum ClientOrderByProperty {
+    FIRST_NAME
+    LAST_NAME
+}
+
+enum TicketOrderByProperty {
+    PRICE
+}
+
+input ClientFilterInput {
+    firstName: String
+    lastName: String
+    email: String
+}
+
+input ClientDtoInput {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String @email(regexp: ".*")
+    gender: Gender
+}
+
+input ClientOrderByInput {
+    property: ClientOrderByProperty
+    direction: SortDirection
+}
+
+input TicketFilterInput {
+    clientId: String
+}
+
+input TicketOrderByInput {
+    property: TicketOrderByProperty
+    direction: SortDirection
 }
 
 

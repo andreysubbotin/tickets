@@ -6,6 +6,24 @@ const messages: TranslationMessages = {
   ...englishMessages,
 
   resources: {
+    TicketDto: {
+      name: "Ticket |||| Tickets",
+
+      fields: {
+        price: "Price",
+        createdBy: "Created By",
+        createdDate: "Created Date",
+
+        client: {
+          id: "Client"
+        },
+
+        flight: {
+          id: "Flight"
+        }
+      }
+    },
+
     ClientDto: {
       name: "Client |||| Clients",
 
