@@ -97,13 +97,13 @@ public class SecurityConfiguration {
 
         UserDetails jsmith = User.builder()
                 .username("j.smith")
-                .password("j.smith")
+                .password("{noop}j.smith")
                 .authorities("ROLE_BOOKER", "ROLE_VIEWER", Authorities.FULL_ACCESS)
                 .build();
 
         UserDetails kivanova = User.builder()
                 .username("k.ivanova")
-                .password("k.ivanova")
+                .password("{noop}k.ivanova")
                 .authorities("ROLE_VIEWER", Authorities.FULL_ACCESS)
                 .build();
 
