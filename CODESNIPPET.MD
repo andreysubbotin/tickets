@@ -40,6 +40,15 @@
 
 ## ElasticSearch
 
+amplicode-demo-services:9200
+
+## Minio
+amplicode-demo-services:9000
+
+minioadmin/minioadmin
+
+client: amplicode-demo-services:9002
+
 
 # Sample data for clients
 
