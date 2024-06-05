@@ -3,8 +3,9 @@ import { TranslationMessages } from "ra-core";
 import { mergeMessages } from "./mergeMessages";
 
 const messages: TranslationMessages = {
-  ...russianMessages,
-  resources: {},
+    ...russianMessages,
+    resources: {},
+    ticketBooking: "Ticket Booking"
 };
 
 export const ru = mergeMessages(

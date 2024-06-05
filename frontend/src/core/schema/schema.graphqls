@@ -56,15 +56,28 @@ type Query {
   userPermissions: [String]
   clientList(filter: ClientFilterInput, sort: [ClientOrderByInput], page: OffsetPageInput): ClientDtoResultPage!
   client(id: ID!): ClientDto!
+  flightList(from: Int!, to: Int!, dateMin: Date!, dateMax: Date!): [FlightDto]!
+  airportList: [AirportDto]!
+  ticket(id: ID!): TicketDto!
+  ticketList(page: OffsetPageInput, sort: [TicketOrderByInput], filter: TicketFilterInput): TicketDtoResultPage!
+  ticketReceiptDownloadUrl(id: ID!): Url!
 }
 
 type Mutation {
   deleteClient(id: ID!): Void
   updateClient(input: ClientDtoInput!): ClientDto!
+  bookTicket(flightId: ID!, clientId: ID!): Void
+  deleteTicket(id: ID!): Void
+}
+
+type AirportDto {
+  id: Int
+  name: String
+  code: String
 }
 
 type ClientDto {
-  id: String
+  id: ID
   firstName: String
   lastName: String
   email: String
@@ -81,6 +94,32 @@ type FileUploadResponse {
   uploadUrl: Url!
 }
 
+type FlightDto {
+  id: Long
+  number: Int
+  airlineName: String
+  airlineCode: String
+  fromAirport: AirportDto
+  toAirport: AirportDto
+  takeoffDate: DateTime
+  landingDate: DateTime
+}
+
+type TicketDto {
+  id: ID
+  price: BigDecimal
+  createdBy: String
+  createdDate: LocalDateTime
+  client: ClientDto
+  flight: FlightDto
+  receipt: String
+}
+
+type TicketDtoResultPage {
+  content: [TicketDto]
+  totalElements: Long!
+}
+
 # Contains information about user
 type UserInfo {
   id: String!
@@ -89,7 +128,7 @@ type UserInfo {
 }
 
 input ClientDtoInput {
-  id: String
+  id: ID
   firstName: String
   lastName: String
   email: String
@@ -112,6 +151,15 @@ input OffsetPageInput {
   size: Int!
 }
 
+input TicketFilterInput {
+  clientId: String
+}
+
+input TicketOrderByInput {
+  property: TicketOrderByProperty
+  direction: SortDirection
+}
+
 enum ClientOrderByProperty {
   FIRST_NAME
   LAST_NAME
@@ -125,6 +173,10 @@ enum Gender {
 enum SortDirection {
   ASC
   DESC
+}
+
+enum TicketOrderByProperty {
+  PRICE
 }
 
 scalar BigDecimal

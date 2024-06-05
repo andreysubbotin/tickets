@@ -7,7 +7,7 @@ const PORT = "8082";
 const SERVER_URL = "http://localhost";
 const BASE_URL = process.env.BASE_URL ?? "/";
 // Do not inline or change this variable as it can be changed by Amplicode Studio code generation.
-const AMPLICODE_ENDPOINTS = "graphql|login|logout|rest";
+const AMPLICODE_ENDPOINTS = "graphql|rest";
 
 /**
  * Aliases should be configured, when app is used as example app

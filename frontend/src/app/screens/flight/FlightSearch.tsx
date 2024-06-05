@@ -1,8 +1,69 @@
-import {Grid, Typography} from "@mui/material";
-import {AutocompleteInput, Button, ReferenceInput, required, SimpleForm, Title, Toolbar, useNotify} from "react-admin";
+import {Card, CardActions, CardContent, Grid, Typography} from "@mui/material";
+import {
+  AutocompleteInput,
+  Button,
+  ListContextProvider,
+  ReferenceInput,
+  required,
+  SimpleForm,
+  Title,
+  Toolbar,
+  useList,
+  UseListValue,
+  useNotify, useTranslate
+} from "react-admin";
 import {DateInput} from "../../../core/components/datetime/DateInput";
-import {useState} from "react";
-//import {getClientDtoRecordRepresentation} from "../../../core/record-representation/getClientDtoRecordRepresentation";
+import {useMemo, useState} from "react";
+import {getClientDtoRecordRepresentation} from "../../../core/record-representation/getClientDtoRecordRepresentation";
+import {gql} from "@amplicode/gql";
+import {useLazyQuery, useMutation} from "@apollo/client";
+import {FlightDto} from "@amplicode/gql/graphql";
+import {renderDateTime} from "../../../core/format/renderDateTime";
+
+const FLIGHT_LIST_FLIGHT_SEARCH = gql(`
+query FlightList_FlightSearch(
+    $from: Int!,
+    $to: Int!,
+    $dateMin: Date!,
+    $dateMax: Date!
+) {
+    flightList(
+        from: $from,
+        to: $to,
+        dateMin: $dateMin,
+        dateMax: $dateMax
+) {
+        id
+        number
+        airlineName
+        airlineCode
+        fromAirport {
+            id
+            name
+            code
+        }
+        toAirport {
+            id
+            name
+            code
+        }
+        takeoffDate
+        landingDate
+    }
+}
+`);
+
+const BOOK_TICKET_BUY_TICKET_BUTTON = gql(`
+mutation BookTicket_BuyTicketButton(
+    $flightId: ID!,
+    $clientId: ID!
+) {
+    bookTicket(
+        flightId: $flightId,
+        clientId: $clientId
+)
+}
+`);
 
 function SearchFormToolbar() {
     return (
@@ -22,19 +83,24 @@ function BuyTicketButton({flightId, clientId}: BuyTicketButtonParams) {
     if (flightId === null) {
         return null
     }
+  const [runBookTicket, {
+    loading: bookTicketLoading,
+    error: bookTicketError
+  }] = useMutation(BOOK_TICKET_BUY_TICKET_BUTTON, {
+  });
     const notify = useNotify();
     return (
         <Button onClick={async e => {
             const clId = clientId()
-            if (clId === null) {
+            if (clId == null) {
                 notify("Client is required for booking", {type: 'warning'})
             } else {
-                // await runBookTicket({
-                //     variables: {
-                //         flightId: flightId,
-                //         clientId: clId
-                //     }
-                // })
+                await runBookTicket({
+                    variables: {
+                        flightId: flightId,
+                        clientId: clId
+                    }
+                })
                 notify(`Ticket booked successfully`, {type: "success"});
             }
         }} label={"Buy ticket"}/>
@@ -52,7 +118,7 @@ function ClientForm({client}: ClientFormParams) {
                     source="client"
                     reference="ClientDto">
                     <AutocompleteInput
-                        //optionText={(value => getClientDtoRecordRepresentation(value))}
+                        optionText={(value => getClientDtoRecordRepresentation(value))}
                         validate={required()}
                         onChange={value => client(value)}
                     />
@@ -65,21 +131,37 @@ function ClientForm({client}: ClientFormParams) {
 export function FlightSearch() {
     const [clientId, setClientId] = useState()
 
-    const doSearchFlights = (data: Record<string, any>) => {
-        // loadFlightList({
-        //     variables: {
-        //         from: data.from,
-        //         to: data.to,
-        //         dateMin: data.fromDate,
-        //         dateMax: data.toDate
-        //     }
-        // })
+  const [loadFlightList, {
+    loading: flightListLoading,
+    error: flightListError,
+    data: flightListData
+  }] = useLazyQuery(FLIGHT_LIST_FLIGHT_SEARCH, {
+  });
+  const flightList = useMemo(
+    () => flightListData?.flightList || [],
+    [flightListData?.flightList]
+  ) as FlightDto[]
+
+  const doSearchFlights = (data: Record<string, any>) => {
+        loadFlightList({
+            variables: {
+                from: data.from,
+                to: data.to,
+                dateMin: data.fromDate,
+                dateMax: data.toDate
+            }
+        })
     };
+
+  const listContext: UseListValue<FlightDto> = useList({
+    data: flightList as Array<FlightDto>,
+  });
+  const translate = useTranslate()
 
     return (
         <div>
             <Title title="pages.TicketBooking"/>
-            <Typography>Ticket Booking</Typography>
+            <Typography>{translate("ticketBooking")}</Typography>
 
             <ClientForm client={value => setClientId(value)}/>
 
@@ -118,6 +200,39 @@ export function FlightSearch() {
                     </Grid>
                 </Grid>
             </SimpleForm>
+          <ListContextProvider value={listContext}>
+            {(flightList || []).map((item =>
+                <Card sx={{margin: '12px'}} key={item.id}>
+                  <CardContent>
+                    <Typography component="div" variant="h5">
+                      {item.number}
+                    </Typography>
+                    <Typography component="div">
+                      Airline code: {item.airlineCode}
+                    </Typography>
+                    <Typography component="div">
+                      Airline name: {item.airlineName}
+                    </Typography>
+                    <Typography component="div">
+                      From airport: {item.fromAirport?.name}
+                    </Typography>
+                    <Typography component="div">
+                      To airport: {item.toAirport?.name}
+                    </Typography>
+                    <Typography component="div">
+                      Takeoff date: {renderDateTime(item.takeoffDate)}
+                    </Typography>
+                    <Typography component="div">
+                      Landing date: {renderDateTime(item.landingDate)}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <BuyTicketButton flightId={item.id} clientId={() => clientId}/>
+                  </CardActions>
+                </Card>
+            ))}
+          </ListContextProvider>
+
         </div>
     );
 }

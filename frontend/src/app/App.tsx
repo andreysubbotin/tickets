@@ -3,6 +3,7 @@ import { AdminContext, AdminUI, CustomRoutes, Loading } from "react-admin";
 import { Route } from "react-router";
 import { useAuthProvider } from "../authProvider/useAuthProvider";
 import { getClientDtoRecordRepresentation } from "../core/record-representation/getClientDtoRecordRepresentation";
+import { getTicketDtoRecordRepresentation } from "../core/record-representation/getTicketDtoRecordRepresentation";
 import { ResourceSecured } from "../core/security/components/ResourceSecured";
 import { RouteSecured } from "../core/security/components/RouteSecured";
 import { dataProvider } from "../dataProvider/graphqlDataProvider";
@@ -13,6 +14,7 @@ import { ClientCreate } from "./screens/client/ClientCreate";
 import { ClientEdit } from "./screens/client/ClientEdit";
 import { ClientList } from "./screens/client/ClientList";
 import { FlightSearch } from "./screens/flight/FlightSearch";
+import { TicketList } from "./screens/ticket/TicketList";
 import { activeAppTheme } from "./themes/appThemeConfig";
 import { getStoredThemeMode } from "./themes/getStoredThemeMode";
 
@@ -57,6 +59,11 @@ export const App = () => {
             recordRepresentation={getClientDtoRecordRepresentation}
             create={ClientCreate}
             edit={ClientEdit}
+          />
+          <ResourceSecured
+            name="TicketDto"
+            list={TicketList}
+            recordRepresentation={getTicketDtoRecordRepresentation}
           />
         </AdminUI>
       </DevSupport>
