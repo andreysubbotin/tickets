@@ -1,7 +1,8 @@
-package com.demo.tickets.service;//package com.demo.tickets.service;
+//package com.demo.tickets.service;
 //
-//import com.demo.tickets.external.flights.api.FlightControllerApi;
-//import com.demo.tickets.external.flights.model.FlFlightDto;
+//import com.demo.tickets.MinioService;
+//import com.demo.tickets.external.flight.api.FlightControllerApi;
+//import com.demo.tickets.external.flight.model.FlFlightDto;
 //import com.demo.tickets.jpa.Client;
 //import com.demo.tickets.jpa.ClientRepository;
 //import com.demo.tickets.mongo.Ticket;
@@ -29,7 +30,6 @@ package com.demo.tickets.service;//package com.demo.tickets.service;
 //            Date and time: %s
 //            Price: %s""";
 //
-//    private final FlightControllerApi flightControllerApi;
 //
 //    public ReceiptService(MinioService minioService,
 //                          @Value("${minio.bucket.ticket.receipt}") String receiptsBucket,
@@ -38,6 +38,7 @@ package com.demo.tickets.service;//package com.demo.tickets.service;
 //        this.minioService = minioService;
 //        this.receiptsBucket = receiptsBucket;
 //        this.flightControllerApi = flightControllerApi;
+//        this.clientRepository = clientRepository;
 //    }
 //
 //    public String createAndSaveReceipt(Ticket ticket) {
@@ -49,6 +50,7 @@ package com.demo.tickets.service;//package com.demo.tickets.service;
 //                new ByteArrayInputStream(receiptText.getBytes(StandardCharsets.UTF_8)),
 //                "text/plain"
 //        );
+//
 //        return fileId;
 //    }
 //
