@@ -2,7 +2,7 @@ import {Grid, Typography} from "@mui/material";
 import {AutocompleteInput, Button, ReferenceInput, required, SimpleForm, Title, Toolbar, useNotify} from "react-admin";
 import {DateInput} from "../../../core/components/datetime/DateInput";
 import {useState} from "react";
-//import {getClientDtoRecordRepresentation} from "../../../core/record-representation/getClientDtoRecordRepresentation";
+import {getClientDtoRecordRepresentation} from "../../../core/record-representation/getClientDtoRecordRepresentation";
 
 function SearchFormToolbar() {
     return (
@@ -52,7 +52,7 @@ function ClientForm({client}: ClientFormParams) {
                     source="client"
                     reference="ClientDto">
                     <AutocompleteInput
-                        //optionText={(value => getClientDtoRecordRepresentation(value))}
+                        optionText={(value => getClientDtoRecordRepresentation(value))}
                         validate={required()}
                         onChange={value => client(value)}
                     />

@@ -14,7 +14,7 @@
 //@Service
 //public class TicketMappingService {
 //    private final ClientMapper clientMapper;
-//    private final FtFlightDtoMapper flightMapper;
+//    private final FlFlightDtoMapper flightMapper;
 //    private final FlightControllerApi flightControllerApi;
 //
 //    private final ClientRepository clientRepository;
@@ -29,7 +29,7 @@
 //        this.clientRepository = clientRepository;
 //    }
 //
-//    public FlightDto ticketById(Long flightId) {
+//    public FlightDto flightById(Long flightId) {
 //        return flightMapper.toDto(flightControllerApi.findById(flightId));
 //    }
 //
