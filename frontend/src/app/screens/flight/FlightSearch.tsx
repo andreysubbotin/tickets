@@ -19,14 +19,14 @@ interface BuyTicketButtonParams {
 }
 
 function BuyTicketButton({flightId, clientId}: BuyTicketButtonParams) {
-    if (flightId === null) {
+    if (flightId == null) {
         return null
     }
     const notify = useNotify();
     return (
         <Button onClick={async e => {
             const clId = clientId()
-            if (clId === null) {
+            if (clId == null) {
                 notify("Client is required for booking", {type: 'warning'})
             } else {
                 // await runBookTicket({
